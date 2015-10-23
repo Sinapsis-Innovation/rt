@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/">
+    <title></title>
+
+    <link rel="stylesheet" type="text/css" href="styles/kendo.common-material.min.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/kendo.material.min.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/main.css"/>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/kendo.all.min.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/controllers/main.js"></script>
+    <script src="js/controllers/projects.js"></script>
+    <script src="js/services/myservice.js"></script>
+    <script src="js/services/gridconfig.js"></script>
+    <script src="js/kendoExportTo2.js"></script>
+
+
+    <!-- Load Pako ZLIB library to enable PDF compression -->
+    <script src="js/pako_deflate.min.js"></script>
+
+    <!-- Excel-->
+    <script src="js/jszip.min.js"></script>
+
+</head>
+<body>
+
+  <div ng-app="ProjectsApp">
+    <header>
+      <ul class="nav">
+        <li><a href="/projects">PROJECTS APROVED</a></li>
+        <li><a href="/pipeline">PIPELINE + 2 YEARS</a></li>
+        <li><a href="/inventory">INVENTORY + 2 YEARS</a></li>
+        <li><a href="/donors">PROJECTS TO DONORS COMMITTEE</a></li>
+      </ul>
+    </header>
+    <div ng-view=""></div>
+  </div>
+
+
+
+    <script>
+
+    var dictionary = {
+      gridheader: {
+        country: "Country",
+        amount: "Amount",
+        countryBeneficiary: "Country Code Beneficiary",
+        projectNumber: "Project Number",
+        projects: "Projects",
+        operations: "Operations",
+        approvalYear:  "Approval Year",
+        approvalDate: "Approval Date",
+        approvalNumber: "Approval Number",
+        projectName: "Project Name",
+        projectType: "Project Type",
+        documentId: "Document Id",
+        year: "Year",
+        documentAcronym: "Executor Acronym",
+        donorsCommittee: "Donors Committe Metting",
+        counterAmount: "Counterpart Amount",
+        cancelledAmount: "Cancelled Amount",
+        increasedAmount: "Increased Amount",
+        currentApproved: "Current Approved",
+        inventoryNumber: "Inventory Number",
+        total: "Total",
+        designTeamLeader: "Design Team Leader",
+        type: "Type",
+        financingType: "Financing Type",
+        operationFund: "Fund",
+        financingAmount: "Financing Amount",
+        originalApprovedAmount: "Orig. Approved Amount",
+        originalAmount: "Original Amount",
+        access: "Access",
+        originalApproved: "Original Approved",
+        cofinancing: "Cofinancing",
+        supervisionTeamLeader: "Supervision Team Leader",
+        status: "Status",
+        pipelineYear: "Pipeline Year",
+        Counterpart: "Counterpart",
+        tcnAmount: "TCN Amount",
+        lonAmount: "LON Amount",
+        equAmount: "EQU Amount"
+      },
+      reports:{
+        projectsApprove: "Projects Approve"
+        pipeline: "Pipeline +2 years"
+      }
+
+    }
+    // Import DejaVu Sans font for embedding
+
+    // NOTE: Only required if the Kendo UI stylesheets are loaded
+    // from a different origin, e.g. cdn.kendostatic.com
+    kendo.pdf.defineFont({
+        "DejaVu Sans"             : "styles/fonts/DejaVu/DejaVuSans.ttf",
+        "DejaVu Sans|Bold"        : "styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
+        "DejaVu Sans|Bold|Italic" : "styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
+        "DejaVu Sans|Italic"      : "styles/fonts/DejaVu/DejaVuSans-Oblique.ttf"
+    });
+
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<style>
+  /* make sure everything in the page template is absolutely positioned.
+   * since the pages will be embedded in an element with position: relative,
+   * all positions here are actually relative to the page element.
+   */
+  .page-template > * {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    font-size: 90%;
+  }
+  .page-template .header {
+    top: 20px;
+    border-bottom: 1px solid #000;
+  }
+  .page-template .footer {
+    bottom: 20px;
+    border-top: 1px solid #000;
+  }
+
+  .pdf-header{
+    height: 145px;
+    line-height: 145px;
+  }
+  .pdf-header h1{
+    line-height: 145px;
+    margin: 0;
+  }
+  .pdf-header img{
+    position: absolute;
+    left: 0;
+  }
+</style>
+
+<style>
+  .k-pdf-export p {
+    border: 2px solid black;
+  }
+</style>
+
+<div class="box-col">
+  <h4>Get PDF</h4>
+  <button class="export-pdf k-button" ng-click="getPDF('.report')">Export</button>
+</div>
+<section class="report">
+  <!-- <div class="pdf-header" ng-class="{pdf : pdf}">
+    <img src="images/logo.jpg" alt="">
+    <h1>PROJECTS APPROVED BY TYPE OF FUNDING</h1>
+  </div> -->
+  <div id="grid" kendo-grid k-options="gridOptions" k-ng-delay="gridOptions">
+  </div>
+  <!-- <div class="pdf-footer" ng-class="{pdf : pdf}">
+    Sample footer
+  </div> -->
+</section>
