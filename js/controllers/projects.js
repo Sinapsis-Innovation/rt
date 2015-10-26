@@ -77,6 +77,9 @@
            grid.showColumn(3);
            grid.hideColumn(4);
 
+           //Desbloquear columnas antes de exportar a pdf
+           grid.unlockColumn("name");
+
            //this.expandRow(this.tbody.find("tr.k-master-row"));
            e.promise.progress(function(e) {
              // Fired for each page
