@@ -72,6 +72,11 @@
            landscape: true
          },
          pdfExport: function(e) {
+
+           //Agregar o quitar columnas antes de exportar a pdf
+           grid.showColumn(3);
+           grid.hideColumn(4);
+
            //this.expandRow(this.tbody.find("tr.k-master-row"));
            e.promise.progress(function(e) {
              // Fired for each page
