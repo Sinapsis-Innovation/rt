@@ -123,7 +123,7 @@
         },
         // filterable: {mode:"row"},
         filterable: true,
-        excelExport: function(e) {exportToExcel(e,gridConfig.childColumns,$scope.reportTitle)},
+        excelExport: function(e) {exportToExcel(e,gridConfig.childColumns,$scope.reportTitle, $scope.reportType)},
         groupable: true,
         sortable: true,
         scrollable: true,

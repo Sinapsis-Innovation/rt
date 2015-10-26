@@ -2,7 +2,7 @@ var masterData;
 var RowsGroup=0, j=-1, allOpetarions = [], childColumns=[];
 
 
-var exportToExcel = function(e, childCol, reporTitle){
+var exportToExcel = function(e, childCol, reporTitle, reportType){
   e.preventDefault();
   childColumns=childCol;
   masterData=null;
@@ -49,16 +49,40 @@ var exportToExcel = function(e, childCol, reporTitle){
     workbook.sheets[0].rows = formatParentRows(workbook.sheets[0].rows);
     for (var i = 0; i < workbook.sheets[0].rows.length; i++) {
       workbook.sheets[0].rows[i].cells.unshift({width: 30});
-      // if(workbook.sheets[0].rows[i].type != 'header'){
-      //   workbook.sheets[0].rows[i].cells[4].value = kendo.toString(new Date(workbook.sheets[0].rows[i].cells[4].value),"dd/MMM/yyyy");
-      //   workbook.sheets[0].rows[i].cells[8].value = kendo.toString(workbook.sheets[0].rows[i].cells[8].value, "c2");
-      //   workbook.sheets[0].rows[i].cells[9].value = kendo.toString(workbook.sheets[0].rows[i].cells[9].value, "c2");
-      // }
+       if(workbook.sheets[0].rows[i].type != 'header'){
+        //workbook.sheets[0].rows[i].cells[5].value = kendo.toString(new Date(workbook.sheets[0].rows[i].cells[5].value),"dd/MMM/yyyy");
+        //workbook.sheets[0].rows[i].cells[12].value = kendo.toString(workbook.sheets[0].rows[i].cells[12].value, "c2");
+        //workbook.sheets[0].rows[i].cells[13].value = kendo.toString(workbook.sheets[0].rows[i].cells[13].value, "c2");
+        if(reportType == 'projects'){
+          workbook.sheets[0].rows[i].cells[13].format = "$#,###0";
+          workbook.sheets[0].rows[i].cells[14].format = "$#,###0";
+          workbook.sheets[0].rows[i].cells[15].format = "$#,###0";
+          workbook.sheets[0].rows[i].cells[16].format = "$#,###0";
+          workbook.sheets[0].rows[i].cells[17].format = "$#,###0";
+          workbook.sheets[0].rows[i].cells[18].format = "$#,###0";
+        }else if(reportType == 'pipeline'){
+          workbook.sheets[0].rows[i].cells[8].value = workbook.sheets[0].rows[i].cells[8].value ? workbook.sheets[0].rows[i].cells[8].value : 0;
+          workbook.sheets[0].rows[i].cells[9].value = workbook.sheets[0].rows[i].cells[9].value ? workbook.sheets[0].rows[i].cells[9].value : 0;
+          workbook.sheets[0].rows[i].cells[10].value = workbook.sheets[0].rows[i].cells[10].value ? workbook.sheets[0].rows[i].cells[10].value : 0;
+
+          workbook.sheets[0].rows[i].cells[8].format = "$#,###0";
+          workbook.sheets[0].rows[i].cells[9].format = "$#,###0";
+          workbook.sheets[0].rows[i].cells[10].format = "$#,###0";
+        }else if(reportType == 'inventory'){
+          workbook.sheets[0].rows[i].cells[9].value = workbook.sheets[0].rows[i].cells[9].value ? workbook.sheets[0].rows[i].cells[9].value : 0;
+          workbook.sheets[0].rows[i].cells[10].value = workbook.sheets[0].rows[i].cells[10].value ? workbook.sheets[0].rows[i].cells[10].value : 0;
+          workbook.sheets[0].rows[i].cells[11].value = workbook.sheets[0].rows[i].cells[11].value ? workbook.sheets[0].rows[i].cells[11].value : 0;
+          workbook.sheets[0].rows[i].cells[9].format = "$#,###0";
+          workbook.sheets[0].rows[i].cells[10].format = "$#,###0";
+          workbook.sheets[0].rows[i].cells[11].format = "$#,###0";
+        }
+
+      }
     }
 
     // merge the detail export sheet rows with the master sheet rows
     // loop backwards so the masterRowIndex doesn't need to be updated
-    for (var i = detailExports.length - 1; i >= 0; i--) {
+    /*for (var i = detailExports.length - 1; i >= 0; i--) {
       var masterRowIndex = detailExports[i].masterRowIndex + 1 + detailExports[i].rowGroup; // compensate for the header row
 
       var sheet = detailExports[i].sheet;
@@ -74,7 +98,7 @@ var exportToExcel = function(e, childCol, reporTitle){
 
       // insert the detail sheet rows after the master row
       [].splice.apply(workbook.sheets[0].rows, [masterRowIndex + 1, 0].concat(sheet.rows));
-    }
+    }*/
 
     // all operations
     $.when.apply(null, allDetailExportPromises)
