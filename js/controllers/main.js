@@ -10,6 +10,7 @@
 // angular.module('ProjectsApp')
   angularRoutingApp.controller('MainCtrl', function ($scope, $http, $timeout, gridConfig, $routeParams) {
 
+    var grid = $("#grid").data("kendoGrid");
 
     $scope.reportTitle = "Projects aproved";
     /*projects, pipeline, inventory, donors*/
@@ -101,6 +102,12 @@
           landscape: true
         },
         pdfExport: function(e) {
+          //Agregar o quitar columnas antes de exportar a pdf
+          grid.showColumn(3);
+          grid.hideColumn(4);
+
+          //Desbloquear columnas antes de exportar a pdf
+          grid.unlockColumn("name");
           //this.expandRow(this.tbody.find("tr.k-master-row"));
           e.promise.progress(function(e) {
            e.page = formatPage(e);
@@ -256,22 +263,23 @@
 
 
     var onError = function(reason){
-      $scope.error = 'The server not response';
+      console.log(reason.data.message);
+      $scope.error = reason.data.message;
     };
 
 
 
     var config = {
-               method: 'POST',
-               url: 'http://hqtamif01:8001/Projects',
-               /*params: {paged:"true",pageSize:"50",pageNumber:"1",orderBy:"ProjectNum"},*/
-               /*params: {},*/
-               data: gridConfig.configData,
-               headers: {
-                'Authorization': 'Basic am1lamlhQGlhZGIub3JnOmExNjkwYmQ5ZWE0ZTRlMzlhODU1NWI5YzdmODFlZjIw',
-                'Content-Type': 'application/json; charset=utf-8',
-                'X-HTTP-Method-Override': 'GET'
-               }
+         method: 'POST',
+         url: 'http://hqtamif01:8001/Projects',
+         /*params: {paged:"true",pageSize:"50",pageNumber:"1",orderBy:"ProjectNum"},*/
+         /*params: {},*/
+         data: gridConfig.configData,
+         headers: {
+          'Authorization': 'Basic am1lamlhQGlhZGIub3JnOmExNjkwYmQ5ZWE0ZTRlMzlhODU1NWI5YzdmODFlZjIw',
+          'Content-Type': 'application/json; charset=utf-8',
+          'X-HTTP-Method-Override': 'GET'
+         }
     }
     $http(config).then(userInformationComplete, onError);
 
