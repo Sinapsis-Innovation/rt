@@ -71,6 +71,7 @@ angular.module('ProjectsApp')
              },{
                field: "approvalYear",
                title: dictionary.gridheader.approvalYear,
+               //headerTemplate: "<strong>Name Edit</strong>",
                locked: true,
                width:"100px",
                attributes:{style:"text-align:center;"},
@@ -81,6 +82,7 @@ angular.module('ProjectsApp')
                title: dictionary.gridheader.projectNumber,
                locked: true,
                width:"150px",
+               aggregates: ["count"],
                footerTemplate: dictionary.gridheader.projects + ": #= window.calculateProjects()#",
                groupHeaderTemplate: dictionary.gridheader.projectNumber + ": #=value# (#=count#)"
              },{
@@ -109,24 +111,28 @@ angular.module('ProjectsApp')
                field: "documentId",
                title: dictionary.gridheader.documentId,
                width:"150px",
+               aggregates: ["count"],
                filterable: { cell: {operator: "contains"}},
                groupHeaderTemplate: dictionary.gridheader.documentId + ": #=value# (#=count#)"
              },{
                field: "name",
                title: dictionary.gridheader.projectName,
                width:"250px",
+               aggregates: ["count"],
                filterable: { cell: {operator: "contains"}},
                groupHeaderTemplate: dictionary.gridheader.projectName + ": #=value# (#=count#)"
              },{
                field: "projectExecutorAcronym",
                title: dictionary.gridheader.documentAcronym,
                width:"150px",
+               aggregates: ["count"],
                filterable: { cell: {operator: "contains"}},
                groupHeaderTemplate: dictionary.gridheader.documentAcronym + ": #=value# (#=count#)"
              },{
                field: "mifAccess",
                title: dictionary.gridheader.access,
                width:"150px",
+               aggregates: ["count"],
                groupHeaderTemplate: dictionary.gridheader.access + ": #=value# (#=count#)",
                template: function(dataItem){
                   var tmp = '';
@@ -139,18 +145,21 @@ angular.module('ProjectsApp')
                field: "operationFund",
                title: dictionary.gridheader.operationFund,
                width:"100px",
+               aggregates: ["count"],
                groupHeaderTemplate: dictionary.gridheader.operationFund + ": #=value# (#=count#)",
                attributes:{style:"text-align:center;"}
              },{
                field: "operationType",
                title: dictionary.gridheader.type,
                width:"150px",
+               aggregates: ["count"],
                groupHeaderTemplate: dictionary.gridheader.type + ": #=value# (#=count#)",
                attributes:{style:"text-align:center;"}
              },{
                field: "financingType",
                title: dictionary.gridheader.financingType,
                width:"150px",
+               aggregates: ["count"],
                groupHeaderTemplate: dictionary.gridheader.financingType + ": #=value# (#=count#)",
                attributes:{style:"text-align:center;"}
              },{
@@ -162,7 +171,7 @@ angular.module('ProjectsApp')
                footerTemplate: "#= kendo.toString(sum, 'c0') #",
                groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
                attributes:{style:"text-align:right;"}
-             },{
+             },/*{
                field: "cancelledAmount",
                title: dictionary.gridheader.cancelledAmount,
                width:"150px",
@@ -189,7 +198,7 @@ angular.module('ProjectsApp')
                footerTemplate: "#= kendo.toString(sum, 'c0') #",
                groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
                attributes:{style:"text-align:right;", class:"numbers"}
-             },{
+             },*/{
                field: "disbursedAmount",
                title: dictionary.gridheader.cofinancing,
                width:"150px",
@@ -199,12 +208,14 @@ angular.module('ProjectsApp')
                groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
                attributes:{style:"text-align:right;", class:"numbers"}
              },{
-               field: "projectCounterpartAmount",
+               field: "approvedCounterpart",
                title: dictionary.gridheader.counterAmount,
                width:"150px",
                format: '{0:c0}',
-               attributes:{style:"text-align:right;", class:"numbers"},
-               aggregates: ["count"]
+               aggregates: ["sum"],
+               footerTemplate: "#= kendo.toString(sum, 'c0') #",
+               groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
+               attributes:{style:"text-align:right;", class:"numbers"}
              },/*{
                field: "total",
                title: dictionary.gridheader.total,
@@ -223,12 +234,14 @@ angular.module('ProjectsApp')
              },{
                field: "supervisionTeamleaderNm",
                title: dictionary.gridheader.supervisionTeamLeader,
+               aggregates: ["count"],
                groupHeaderTemplate: dictionary.gridheader.supervisionTeamLeader + ": #=value# (#=count#)",
                width:"150px"
              },{
                field: "operationStatus",
                title: dictionary.gridheader.status,
                width:"150px",
+               aggregates: ["count"],
                groupHeaderTemplate: dictionary.gridheader.status + ": #=value# (#=count#)",
                attributes:{style:"text-align:center;"}
               }
@@ -256,16 +269,17 @@ angular.module('ProjectsApp')
 
            this.gridAggregates = [
              { field: "countryBeneficiary", aggregate: "count" },
-             { field: "projectNum", aggregate: "average" },
+             { field: "projectNum", aggregate: "count" },
              { field: "operationNum", aggregate: "count" },
              { field: "approvalYear", aggregate: "count" },
              { field: "approvalDate", aggregate: "count" },
              { field: "name", aggregate: "count" },
              { field: "documentId", aggregate: "count" },
              { field: "originalApprovedAmount", aggregate: "sum" },
-             { field: "cancelledAmount", aggregate: "sum" },
-             { field: "increasedAmount", aggregate: "sum" },
-             { field: "currentApprovedAmount", aggregate: "sum" },
+            // { field: "cancelledAmount", aggregate: "sum" },
+             //{ field: "increasedAmount", aggregate: "sum" },
+             //{ field: "currentApprovedAmount", aggregate: "sum" },
+             { field: "approvedCounterpart", aggregate: "sum" },
              { field: "disbursedAmount", aggregate: "sum" },
              { field: "projectExecutorAcronym", aggregate: "count" },
              { field: "designTeamleaderNm", aggregate: "count" }
@@ -276,7 +290,7 @@ angular.module('ProjectsApp')
                      fields: {
                        approvalYear: { type: "number" },
                        approvalDate: { type: "date" },
-                       currentApprovedAmount: { type: "number", defaultValue:0 },
+                       //currentApprovedAmount: { type: "number", defaultValue:0 },
                        originalApprovedAmount: { type: "number", defaultValue:0},
                        disbursedAmount: { type: "number", defaultValue:0 }
                      }
@@ -365,7 +379,7 @@ angular.module('ProjectsApp')
               groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
               attributes:{style:"text-align:right;"},
               template: "#= originalApprovedAmount === null?  '$0' : kendo.toString(originalApprovedAmount, 'c0')#"
-            },{
+            },/*{
               field: "currentApprovedAmount",
               title: dictionary.gridheader.total,
               width:"150px",
@@ -375,7 +389,7 @@ angular.module('ProjectsApp')
               groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
               attributes:{style:"text-align:right;", class:"numbers"},
               template: "#= currentApprovedAmount === null?  '$0' : kendo.toString(currentApprovedAmount, 'c0')#"
-            },{
+            },*/{
               field: "disbursedAmount",
               title: dictionary.gridheader.cofinancing,
               width:"150px",
@@ -525,9 +539,9 @@ angular.module('ProjectsApp')
             { field: "name", aggregate: "count" },
             { field: "documentId", aggregate: "count" },
             { field: "originalApprovedAmount", aggregate: "sum" },
-            { field: "cancelledAmount", aggregate: "sum" },
-            { field: "increasedAmount", aggregate: "sum" },
-            { field: "currentApprovedAmount", aggregate: "sum" },
+            //{ field: "cancelledAmount", aggregate: "sum" },
+            //{ field: "increasedAmount", aggregate: "sum" },
+            //{ field: "currentApprovedAmount", aggregate: "sum" },
             { field: "disbursedAmount", aggregate: "sum" },
             { field: "projectExecutorAcronym", aggregate: "count" },
             { field: "designTeamleaderNm", aggregate: "count" }
@@ -544,7 +558,7 @@ angular.module('ProjectsApp')
                      vppDate: { type: "date"},
                      donorsDate: { type: "date"},
                      distribution: { defaultValue: { DistributionID: 1, DistributionName: "Standard - For Consideration"}},
-                     currentApprovedAmount: { type: "number", defaultValue:0 },
+                     //currentApprovedAmount: { type: "number", defaultValue:0 },
                      originalApprovedAmount: { type: "number", defaultValue:0},
                      disbursedAmount: { type: "number", defaultValue:0 }
                    }
@@ -616,7 +630,7 @@ angular.module('ProjectsApp')
               groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
               attributes:{style:"text-align:right;"},
               template: "#= originalApprovedAmount === null?  '$0' : kendo.toString(originalApprovedAmount, 'c0')#"
-            },{
+            },/*{
               field: "currentApprovedAmount",
               title: dictionary.gridheader.total,
               width:"150px",
@@ -626,7 +640,7 @@ angular.module('ProjectsApp')
               groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
               attributes:{style:"text-align:right;", class:"numbers"},
               template: "#= currentApprovedAmount === null?  '$0' : kendo.toString(currentApprovedAmount, 'c0')#"
-            },{
+            },*/{
               field: "disbursedAmount",
               title: dictionary.gridheader.cofinancing,
               width:"150px",
@@ -670,9 +684,9 @@ angular.module('ProjectsApp')
            { field: "name", aggregate: "count" },
            { field: "documentId", aggregate: "count" },
            { field: "originalApprovedAmount", aggregate: "sum" },
-           { field: "cancelledAmount", aggregate: "sum" },
-           { field: "increasedAmount", aggregate: "sum" },
-           { field: "currentApprovedAmount", aggregate: "sum" },
+           //{ field: "cancelledAmount", aggregate: "sum" },
+           //{ field: "increasedAmount", aggregate: "sum" },
+           //{ field: "currentApprovedAmount", aggregate: "sum" },
            { field: "disbursedAmount", aggregate: "sum" },
            { field: "projectExecutorAcronym", aggregate: "count" },
            { field: "designTeamleaderNm", aggregate: "count" }
@@ -684,7 +698,7 @@ angular.module('ProjectsApp')
                     mifeDate: { type: "date"},
                     pdrEventDate: { type: "date"},
                     originalApprovedAmount: { type: "number", defaultValue:0},
-                    currentApprovedAmount: { type: "number", defaultValue:0 },
+                    //currentApprovedAmount: { type: "number", defaultValue:0 },
                     disbursedAmount: { type: "number", defaultValue:0 }
                   }
               }

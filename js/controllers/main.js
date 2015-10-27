@@ -179,7 +179,7 @@
           this.expandRow(this.tbody.find("tr.k-master-row").first());
            // this.expandRow(this.tbody.find("tr.k-master-row"));
         },
-        height: "80vh",
+        //height: "80vh",
         // filterable: {mode:"row"},
         filterable: true,
         excelExport: function(e) {exportToExcel(e,gridConfig.childColumns,$scope.reportTitle, $scope.reportType)},
