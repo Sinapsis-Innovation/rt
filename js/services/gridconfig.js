@@ -584,7 +584,7 @@ angular.module('ProjectsApp')
             },{
               field: "name",
               title: dictionary.gridheader.projectName,
-              width:"250px",
+              width:"100px",
               filterable: { cell: {operator: "contains"}},
             },{
               field: "projectExecutorAcronym",

@@ -10,7 +10,7 @@
 // angular.module('ProjectsApp')
   angularRoutingApp.controller('MainCtrl', function ($scope, $http, $timeout, gridConfig, $routeParams) {
 
-    var grid = $("#grid").data("kendoGrid");
+
 
     $scope.reportTitle = "Projects aproved";
     /*projects, pipeline, inventory, donors*/
@@ -102,25 +102,84 @@
           landscape: true
         },
         pdfExport: function(e) {
+          var grid = $("#grid").data("kendoGrid");
           //Agregar o quitar columnas antes de exportar a pdf
-          grid.showColumn(3);
-          grid.hideColumn(4);
 
+
+
+          grid.autoFitColumn(1);
+          grid.autoFitColumn(2);
+          grid.autoFitColumn(3);
+          grid.autoFitColumn(4);
+          grid.autoFitColumn(5);
+          grid.autoFitColumn(6);
+          grid.autoFitColumn(7);
+          grid.autoFitColumn(8);
+          grid.autoFitColumn(9);
+          grid.autoFitColumn(10);
+          grid.autoFitColumn(11);
+          grid.autoFitColumn(12);
+          grid.autoFitColumn(13);
+          grid.autoFitColumn(14);
+          grid.autoFitColumn(15);
+          grid.autoFitColumn(16);
+          grid.autoFitColumn(17);
+          grid.autoFitColumn(18);
+          grid.autoFitColumn(19);
+          grid.autoFitColumn(20);
+          grid.autoFitColumn(21);
+          grid.autoFitColumn(22);
+          grid.autoFitColumn(23);
+
+          grid.dataSource.pageSize(10);
+          // grid.refresh();
           //Desbloquear columnas antes de exportar a pdf
-          grid.unlockColumn("name");
+          grid.dataSource.page(2);
+          grid.dataSource.page(1);
+          grid.hideColumn("pipelineYear");
+          grid.hideColumn("projectNum");
+          grid.hideColumn("countryBeneficiaryName");
+          grid.unlockColumn("pipelineYear");
+          grid.unlockColumn("projectNum");
+          grid.unlockColumn("countryBeneficiaryName");
+          grid.showColumn("pipelineYear");
+          grid.showColumn("projectNum");
+          grid.showColumn("countryBeneficiaryName");
+
+
           //this.expandRow(this.tbody.find("tr.k-master-row"));
           e.promise.progress(function(e) {
            e.page = formatPage(e);
+          }).done(function() {
+            grid.dataSource.pageSize(10);
+            grid.refresh();
+            // grid.showColumn(1);
+            // grid.showColumn(2);
+            // grid.showColumn(3);
+            // grid.showColumn(4);
+            // grid.showColumn(5);
+            // grid.showColumn(6);
+            // grid.showColumn(7);
+            // grid.showColumn(8);
+            // grid.showColumn(9);
+            // grid.showColumn(10);
+            grid.lockColumn("pipelineYear");
+            grid.lockColumn("projectNum");
+            grid.lockColumn("countryBeneficiaryName");
+
+
           });
         },
         excel: {
             allPages: true
         },
         dataBound: function() {
+
           gridConfig.detailExportPromises = [];
           this.expandRow(this.tbody.find("tr.k-master-row").first());
            // this.expandRow(this.tbody.find("tr.k-master-row"));
         },
+        height: "80vh",
         // filterable: {mode:"row"},
         filterable: true,
         excelExport: function(e) {exportToExcel(e,gridConfig.childColumns,$scope.reportTitle, $scope.reportType)},
@@ -167,7 +226,14 @@
          editable:true, //Solo para pipeline
          columns: gridConfig.childColumns
        });
+
      }
+     setTimeout(function(){
+        // Arregla el tamaño de las celdas cuando están bloqueadas
+        var grid = $("#grid").data("kendoGrid");
+        grid.dataSource.pageSize(10);
+      }, 1000);
+
     };
 
 
@@ -189,6 +255,7 @@
 
   // A4 Sheet with 1 cm borders, landscape
   var PAGE_RECT = new geom.Rect(
+    // [mm(0), 0], [mm(297 - 20), mm(410 - 20)]
     [mm(0), 0], [mm(297 - 20), mm(210 - 20)]
   );
 
