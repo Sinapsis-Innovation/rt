@@ -73,15 +73,15 @@ var exportChildData = function(OperationList,projectNum, rowIndex, RowsGroup) {
  detailExportPromises.push(deferred);
 
  var exporter = new kendo.ExcelExporter({
-   columns: childColumns,/* [{field: "operationNum", title: dictionary.gridheader.approvalNumber},
-             {field: "mifAccess", title: dictionary.gridheader.access},
-             {field: "operationType", title: dictionary.gridheader.type},
-             {field: "financingType", title: dictionary.gridheader.financingType},
-             {field: "originalApprovedAmount", title: dictionary.gridheader.originalAmount, attributes:{style:"text-align:right;"}},
-             {field: "currentApprovedAmount", title: dictionary.gridheader.currentApproved, format: '{0:c0}', attributes:{class:"numbers"}},
-             {field: "disbursedAmount", title: dictionary.gridheader.cofinancing, attributes:{style:"text-align:right;"}},
-             {field: "supervisionTeamleaderNm", title: dictionary.gridheader.supervisionTeamLeader},
-             {field: "operationStatus", title: dictionary.gridheader.status}
+   columns: childColumns,/* [{field: "operationNum", title: configuration.gridheader.approvalNumber},
+             {field: "mifAccess", title: configuration.gridheader.access},
+             {field: "operationType", title: configuration.gridheader.type},
+             {field: "financingType", title: configuration.gridheader.financingType},
+             {field: "originalApprovedAmount", title: configuration.gridheader.originalAmount, attributes:{style:"text-align:right;"}},
+             {field: "currentApprovedAmount", title: configuration.gridheader.currentApproved, format: '{0:c0}', attributes:{class:"numbers"}},
+             {field: "disbursedAmount", title: configuration.gridheader.cofinancing, attributes:{style:"text-align:right;"}},
+             {field: "supervisionTeamleaderNm", title: configuration.gridheader.supervisionTeamLeader},
+             {field: "operationStatus", title: configuration.gridheader.status}
            ],*/
    dataSource: OperationList
  });
@@ -103,24 +103,24 @@ var allExportChildData = function(operations) {
  allDetailExportPromises.push(deferred);
 
  var exporter = new kendo.ExcelExporter({
-   columns: [{field: "countryBeneficiary", title: dictionary.gridheader.country},
-             {field: "approvalYear", title: dictionary.gridheader.approvalYear},
-             {field: "projectNum", title: dictionary.gridheader.projectNumber},
-             {field: "operationNum", title: dictionary.gridheader.approvalNumber},
-             {field: "approvalDate",title: dictionary.gridheader.approvalDate},
-             {field: "documentId", title: dictionary.gridheader.documentId},
-             {field: "name", title: dictionary.gridheader.projectName},
-             {field: "projectExecutorAcronym", title: dictionary.gridheader.documentAcronym},
-             {field: "mifAccess", title: dictionary.gridheader.access},
-             {field: "operationType", title: dictionary.gridheader.type},
-             {field: "financingType", title: dictionary.gridheader.financingType},
-             {field: "originalApprovedAmount", title: dictionary.gridheader.originalAmount},
-             {field: "currentApprovedAmount", title: dictionary.gridheader.currentApproved},
-             {field: "disbursedAmount", title: dictionary.gridheader.cofinancing},
-             {field: "total", title: dictionary.gridheader.total},
-             {field: "designTeamleaderNm", title: dictionary.gridheader.designTeamLeader},
-             {field: "supervisionTeamleaderNm", title: dictionary.gridheader.supervisionTeamLeader},
-             {field: "operationStatus", title: dictionary.gridheader.status}
+   columns: [{field: "countryBeneficiary", title: configuration.gridheader.country},
+             {field: "approvalYear", title: configuration.gridheader.approvalYear},
+             {field: "projectNum", title: configuration.gridheader.projectNumber},
+             {field: "operationNum", title: configuration.gridheader.approvalNumber},
+             {field: "approvalDate",title: configuration.gridheader.approvalDate},
+             {field: "documentId", title: configuration.gridheader.documentId},
+             {field: "name", title: configuration.gridheader.projectName},
+             {field: "projectExecutorAcronym", title: configuration.gridheader.documentAcronym},
+             {field: "mifAccess", title: configuration.gridheader.access},
+             {field: "operationType", title: configuration.gridheader.type},
+             {field: "financingType", title: configuration.gridheader.financingType},
+             {field: "originalApprovedAmount", title: configuration.gridheader.originalAmount},
+             {field: "currentApprovedAmount", title: configuration.gridheader.currentApproved},
+             {field: "disbursedAmount", title: configuration.gridheader.cofinancing},
+             {field: "total", title: configuration.gridheader.total},
+             {field: "designTeamleaderNm", title: configuration.gridheader.designTeamLeader},
+             {field: "supervisionTeamleaderNm", title: configuration.gridheader.supervisionTeamLeader},
+             {field: "operationStatus", title: configuration.gridheader.status}
          ],
    dataSource: allOpetarions
  });

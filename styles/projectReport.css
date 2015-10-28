@@ -8,7 +8,9 @@ section.report { width: 96%;}
 
   }
 
-.k-grid-header th.k-header {white-space: pre-wrap;     vertical-align: middle;}
+.k-grid-header th.k-header {white-space: pre-wrap;     vertical-align: top; position: relative;}
+.k-grid-header .k-grid-filter {padding: .5em .714em;}
+.k-grid-header th>.k-link>.k-icon {position: absolute; left: 0; top: 9px;}
 
   /* Hide the Grid header and pager during export */
 .k-pdf-export .k-grid-toolbar,
@@ -60,6 +62,8 @@ section.report { width: 96%;}
 .k-group-footer:not(:last-child){
   /*display: none !important;*/
 }
+
+.k-icon.k-filter { vertical-align: -webkit-baseline-middle;}
 
 
 .pdf-header , .pdf-footer{
