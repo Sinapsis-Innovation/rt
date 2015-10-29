@@ -2,6 +2,12 @@
   Use the DejaVu Sans font for display and embedding in the PDF file.
   The standard PDF fonts have no support for Unicode characters.
   */
+
+.tablePrincipal {
+      width: 99vw !important;
+       table-layout: fixed;
+}
+
 section.report { width: 96%;}
   .k-grid {
     font-family: "DejaVu Sans", "Arial", sans-serif;

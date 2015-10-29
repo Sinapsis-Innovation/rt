@@ -182,6 +182,8 @@ angularRoutingApp.controller('MainCtrl', function ($scope, $http, $timeout, grid
             //height: "80vh",
             // filterable: {mode:"row"},
             filterable: true,
+            selectable: "multiple cell",
+            navigatable: true,
             excelExport: function (e) { exportToExcel(e, gridConfig.childColumns, $scope.reportTitle, $scope.reportType) },
             groupable: true,
             sortable: true,
