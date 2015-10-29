@@ -66,7 +66,8 @@ angular.module('ProjectsApp')
                width:"100px",
                aggregates: "count",
                footerTemplate: "Total",
-               groupHeaderTemplate: configuration.gridheader.country + ": #=value# (#=count#)"
+               groupHeaderTemplate: configuration.gridheader.country + ": #=value# (#=count#)",
+               attributes:{style:"text-align:center;"}
                //groupHeaderTemplate: configuration.gridheader.country +": #= value # "+configuration.gridheader.projects+": #= window.calculateProjects(e)# "+ configuration.gridheader.operations +": #= count #"
              },{
                field: "approvalYear",
@@ -84,7 +85,8 @@ angular.module('ProjectsApp')
                width:"150px",
                aggregates: ["count"],
                footerTemplate: configuration.gridheader.projects + ": #= window.calculateProjects()#",
-               groupHeaderTemplate: configuration.gridheader.projectNumber + ": #=value# (#=count#)"
+               groupHeaderTemplate: configuration.gridheader.projectNumber + ": #=value# (#=count#)",
+               attributes:{style:"text-align:center;"}
              },{
                field: "operationNum",
                title: configuration.gridheader.approvalNumber,
@@ -92,7 +94,8 @@ angular.module('ProjectsApp')
                footerTemplate: configuration.gridheader.operations + ": #=count#",
                groupHeaderTemplate: configuration.gridheader.approvalNumber + ": #=value# (#=count#)",
                locked: true,
-               width:"150px"
+               width:"150px",
+               attributes:{style:"text-align:center;"}
              },{
                field: "approvalDate",
                title: configuration.gridheader.approvalDate,
@@ -106,14 +109,16 @@ angular.module('ProjectsApp')
                   }
                },
                aggregates: "count",
-               groupHeaderTemplate: configuration.gridheader.approvalDate + ": #=value# (#=count#)"
+               groupHeaderTemplate: configuration.gridheader.approvalDate + ": #=value# (#=count#)",
+               attributes:{style:"text-align:center;"}
              },{
                field: "documentId",
                title: configuration.gridheader.documentId,
                width:"120px",
                aggregates: ["count"],
                filterable: { cell: {operator: "contains"}},
-               groupHeaderTemplate: configuration.gridheader.documentId + ": #=value# (#=count#)"
+               groupHeaderTemplate: configuration.gridheader.documentId + ": #=value# (#=count#)",
+               attributes:{style:"text-align:center;"}
              },{
                field: "name",
                title: configuration.gridheader.projectName,
@@ -127,7 +132,8 @@ angular.module('ProjectsApp')
                width:"120px",
                aggregates: ["count"],
                filterable: { cell: {operator: "contains"}},
-               groupHeaderTemplate: configuration.gridheader.documentAcronym + ": #=value# (#=count#)"
+               groupHeaderTemplate: configuration.gridheader.documentAcronym + ": #=value# (#=count#)",
+               attributes:{style:"text-align:center;"}
              },{
                field: "mifAccess",
                title: configuration.gridheader.access,
@@ -140,7 +146,8 @@ angular.module('ProjectsApp')
                     tmp = dataItem.mifAccess + ' : ' + dataItem.mifAccessname;
                   }
                   return tmp;
-                }
+                },
+                attributes:{style:"text-align:center;"}
              },{
                field: "operationFund",
                title: configuration.gridheader.operationFund,
@@ -171,42 +178,6 @@ angular.module('ProjectsApp')
                footerTemplate: "#= kendo.toString(sum, 'c0') #",
                groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
                attributes:{style:"text-align:right;"}
-             },/*{
-               field: "cancelledAmount",
-               title: configuration.gridheader.cancelledAmount,
-               width:"150px",
-               format: '{0:c0}',
-               aggregates: ["sum"],
-               footerTemplate: "#= kendo.toString(sum, 'c0') #",
-               groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
-               attributes:{style:"text-align:right;"}
-             },{
-               field: "increasedAmount",
-               title: configuration.gridheader.increasedAmount,
-               width:"150px",
-               format: '{0:c0}',
-               aggregates: ["sum"],
-               footerTemplate: "#= kendo.toString(sum, 'c0') #",
-               groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
-               attributes:{style:"text-align:right;"}
-             },{
-               field: "currentApprovedAmount",
-               title: configuration.gridheader.total,
-               width:"150px",
-               format: '{0:c0}',
-               aggregates: ["sum"],
-               footerTemplate: "#= kendo.toString(sum, 'c0') #",
-               groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
-               attributes:{style:"text-align:right;", class:"numbers"}
-             },*/{
-               field: "disbursedAmount",
-               title: configuration.gridheader.cofinancing,
-               width:"150px",
-               format: '{0:c0}',
-               aggregates: ["sum"],
-               footerTemplate: "#= kendo.toString(sum, 'c0') #",
-               groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
-               attributes:{style:"text-align:right;", class:"numbers"}
              },{
                field: "approvedCounterpart",
                title: configuration.gridheader.counterAmount,
@@ -216,26 +187,20 @@ angular.module('ProjectsApp')
                footerTemplate: "#= kendo.toString(sum, 'c0') #",
                groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
                attributes:{style:"text-align:right;", class:"numbers"}
-             },/*{
-               field: "total",
-               title: configuration.gridheader.total,
-               width:"150px",
-               format: '{0:c0}',
-               attributes:{style:"text-align:right;"},
-               aggregates: "count",
-               groupHeaderTemplate: "Country: #= value # Total: #= count #"
-             },*/{
+             },{
                field: "designTeamleaderNm",
                title: configuration.gridheader.designTeamLeader,
                width:"180px",
                filterable: { cell: {operator: "contains"}},
                aggregates: "count",
-               groupHeaderTemplate: configuration.gridheader.designTeamLeader + ": #=value# (#=count#)"
+               groupHeaderTemplate: configuration.gridheader.designTeamLeader + ": #=value# (#=count#)",
+               attributes:{style:"text-align:center;"}
              },{
                field: "supervisionTeamleaderNm",
                title: configuration.gridheader.supervisionTeamLeader,
                aggregates: ["count"],
                groupHeaderTemplate: configuration.gridheader.supervisionTeamLeader + ": #=value# (#=count#)",
+               attributes:{style:"text-align:center;"},
                width:"180px"
              },{
                field: "operationStatus",
@@ -276,11 +241,7 @@ angular.module('ProjectsApp')
              { field: "name", aggregate: "count" },
              { field: "documentId", aggregate: "count" },
              { field: "originalApprovedAmount", aggregate: "sum" },
-            // { field: "cancelledAmount", aggregate: "sum" },
-             //{ field: "increasedAmount", aggregate: "sum" },
-             //{ field: "currentApprovedAmount", aggregate: "sum" },
              { field: "approvedCounterpart", aggregate: "sum" },
-             { field: "disbursedAmount", aggregate: "sum" },
              { field: "projectExecutorAcronym", aggregate: "count" },
              { field: "designTeamleaderNm", aggregate: "count" }
             ];
@@ -290,9 +251,7 @@ angular.module('ProjectsApp')
                      fields: {
                        approvalYear: { type: "number" },
                        approvalDate: { type: "date" },
-                       //currentApprovedAmount: { type: "number", defaultValue:0 },
                        originalApprovedAmount: { type: "number", defaultValue:0},
-                       disbursedAmount: { type: "number", defaultValue:0 }
                      }
                  }
             };
@@ -310,8 +269,8 @@ angular.module('ProjectsApp')
               width:"100px",
               aggregates: "count",
               footerTemplate: "Total",
-              //template: "#= countryBeneficiaryName === null?  coverage : countryBeneficiaryName#",
-              groupHeaderTemplate: configuration.gridheader.country + ": #=value# (#=count#)"
+              groupHeaderTemplate: configuration.gridheader.country + ": #=value# (#=count#)",
+              attributes:{style:"text-align:center;"}
             },{
               field: "pipelineYear",
               title: configuration.gridheader.pipelineYear,
@@ -325,6 +284,7 @@ angular.module('ProjectsApp')
               title: configuration.gridheader.projectNumber,
               locked: true,
               width:"120px",
+              attributes:{style:"text-align:center;"},
               footerTemplate: configuration.gridheader.projects + ": #= window.calculateProjects()#",
               groupHeaderTemplate: configuration.gridheader.projectNumber + ": #=value# (#=count#)"
             },{
@@ -332,6 +292,7 @@ angular.module('ProjectsApp')
               title: configuration.gridheader.documentId,
               width:"120px",
               filterable: { cell: {operator: "contains"}},
+              attributes:{style:"text-align:center;"},
               groupHeaderTemplate: configuration.gridheader.documentId + ": #=value# (#=count#)"
             },{
               field: "name",
@@ -343,6 +304,7 @@ angular.module('ProjectsApp')
               field: "projectExecutorAcronym",
               title: configuration.gridheader.documentAcronym,
               width:"120px",
+              attributes:{style:"text-align:center;"},
               filterable: { cell: {operator: "contains"}},
               groupHeaderTemplate: configuration.gridheader.documentAcronym + ": #=value# (#=count#)"
             },{
@@ -350,6 +312,7 @@ angular.module('ProjectsApp')
               title: configuration.gridheader.access,
               width:"150px",
               groupHeaderTemplate: configuration.gridheader.access + ": #=value# (#=count#)",
+              attributes:{style:"text-align:center;"},
               template: function(dataItem){
                  var tmp = '';
                  if(dataItem.mifAccess){
@@ -379,70 +342,69 @@ angular.module('ProjectsApp')
               groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
               attributes:{style:"text-align:right;"},
               template: "#= originalApprovedAmount === null?  '$0' : kendo.toString(originalApprovedAmount, 'c0')#"
-            },/*{
-              field: "currentApprovedAmount",
-              title: configuration.gridheader.total,
+            },{
+              field: "approvedCounterpart",
+              title: configuration.gridheader.counterAmount,
               width:"150px",
               format: '{0:c0}',
               aggregates: ["sum"],
               footerTemplate: "#= kendo.toString(sum, 'c0') #",
               groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
               attributes:{style:"text-align:right;", class:"numbers"},
-              template: "#= currentApprovedAmount === null?  '$0' : kendo.toString(currentApprovedAmount, 'c0')#"
-            },*/{
-              field: "disbursedAmount",
-              title: configuration.gridheader.cofinancing,
-              width:"150px",
-              format: '{0:c0}',
-              aggregates: ["sum"],
-              footerTemplate: "#= kendo.toString(sum, 'c0') #",
-              groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
-              attributes:{style:"text-align:right;", class:"numbers"},
-              template: "#= disbursedAmount === null?  '$0' : kendo.toString(disbursedAmount, 'c0')#"
+              template: "#= approvedCounterpart === null?  '$0' : kendo.toString(approvedCounterpart, 'c0')#"
             },{
               field: "mifeDate",
               title: "MIFE",
               width:"100px",
+              attributes:{style:"text-align:center;"},
               format: "{0: dd/MMM/yyyy}"
             },{
               field: "pdrEventDate",
               title: "PDR",
               width:"100px",
+              attributes:{style:"text-align:center;"},
               format: "{0: dd/MMM/yyyy}"
             },{
               field: "qrrDate",
               title: "QRR",
               width:"100px",
+              attributes:{style:"text-align:center;"},
               format: "{0: dd/MMM/yyyy}"
             },{
               field: "secDate",
               title: "SEC",
               width:"100px",
+              attributes:{style:"text-align:center;"},
               format: "{0: dd/MMM/yyyy}"
             },{
               field: "sec2Date",
               title: "SEC 2",
               width:"100px",
+              attributes:{style:"text-align:center;"},
               format: "{0: dd/MMM/yyyy}"
             },{
               field: "vppDate",
               title: "VPP",
               width:"100px",
+              attributes:{style:"text-align:center;"},
               format: "{0: dd/MMM/yyyy}"
             },{
               field: "donorsDate",
               title: "Donors commite Metting",
               width:"100px",
+              attributes:{style:"text-align:center;"},
               format: "{0: dd/MMM/yyyy}"
              },{
               field: "distribution",
               title: "Distribution procedure",
               width:"180px",
+              attributes:{style:"text-align:center;"},
               format: "¡Pendiente!"
             },{
               field: "operationNum",
               title: configuration.gridheader.approvalNumber,
               width:"150px",
+              attributes:{style:"text-align:center;"},
               footerTemplate: configuration.gridheader.operations + ": #=count#",
               template: "#= operationNum === null?  ' ' : operationNum#"
             },{
@@ -453,6 +415,7 @@ angular.module('ProjectsApp')
              },{
                 field: "designTeamleaderNm",
                 title: "Team Leader",
+                attributes:{style:"text-align:center;"},
                 width:"180px"
             }];
 
@@ -539,10 +502,7 @@ angular.module('ProjectsApp')
             { field: "name", aggregate: "count" },
             { field: "documentId", aggregate: "count" },
             { field: "originalApprovedAmount", aggregate: "sum" },
-            //{ field: "cancelledAmount", aggregate: "sum" },
-            //{ field: "increasedAmount", aggregate: "sum" },
-            //{ field: "currentApprovedAmount", aggregate: "sum" },
-            { field: "disbursedAmount", aggregate: "sum" },
+            { field: "approvedCounterpart", aggregate: "sum" },
             { field: "projectExecutorAcronym", aggregate: "count" },
             { field: "designTeamleaderNm", aggregate: "count" }
            ];
@@ -558,9 +518,7 @@ angular.module('ProjectsApp')
                      vppDate: { type: "date"},
                      donorsDate: { type: "date"},
                      distribution: { defaultValue: { DistributionID: 1, DistributionName: "Standard - For Consideration"}},
-                     //currentApprovedAmount: { type: "number", defaultValue:0 },
                      originalApprovedAmount: { type: "number", defaultValue:0},
-                     disbursedAmount: { type: "number", defaultValue:0 }
                    }
                }
           };
@@ -573,18 +531,21 @@ angular.module('ProjectsApp')
             {
               field: "projectNum",
               width:"150px",
+              attributes:{style:"text-align:center;"},
               footerTemplate: configuration.gridheader.projects + ": #= window.calculateProjects()#",
               title: configuration.gridheader.inventoryNumber
             },{
               field: "countryBeneficiaryName",
               title: configuration.gridheader.country,
               width:"100px",
+              attributes:{style:"text-align:center;"},
               attributes:{style:" text-transform:uppercase;"},
               template: "#= countryBeneficiaryName === null?  projectInstitutionCountryName : countryBeneficiaryName#",
             },{
               field: "mifAccess",
               title: configuration.gridheader.access,
               width:"200px",
+              attributes:{style:"text-align:center;"},
               template: function(dataItem){
                  var tmp = '';
                  if(dataItem.mifAccess){
@@ -599,10 +560,12 @@ angular.module('ProjectsApp')
             },{
               field: "projectExecutorAcronym",
               title: configuration.gridheader.documentAcronym,
+              attributes:{style:"text-align:center;"},
               filterable: { cell: {operator: "contains"}},
             },{
                 field: "projectType",
                 width:"100px",
+                attributes:{style:"text-align:center;"},
                 title: configuration.gridheader.projectType
             },{
               field: "financingType",
@@ -625,31 +588,22 @@ angular.module('ProjectsApp')
               groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
               attributes:{style:"text-align:right;"},
               template: "#= originalApprovedAmount === null?  '$0' : kendo.toString(originalApprovedAmount, 'c0')#"
-            },/*{
-              field: "currentApprovedAmount",
-              title: configuration.gridheader.total,
+            },{
+              field: "approvedCounterpart",
+              title: configuration.gridheader.counterAmount,
               width:"150px",
               format: '{0:c0}',
               aggregates: ["sum"],
               footerTemplate: "#= kendo.toString(sum, 'c0') === null? '$0' :  kendo.toString(sum, 'c0') #",
               groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
               attributes:{style:"text-align:right;", class:"numbers"},
-              template: "#= currentApprovedAmount === null?  '$0' : kendo.toString(currentApprovedAmount, 'c0')#"
-            },*/{
-              field: "disbursedAmount",
-              title: configuration.gridheader.cofinancing,
-              width:"150px",
-              format: '{0:c0}',
-              aggregates: ["sum"],
-              footerTemplate: "#= kendo.toString(sum, 'c0') === null? '$0' :  kendo.toString(sum, 'c0') #",
-              groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
-              attributes:{style:"text-align:right;", class:"numbers"},
-              template: "#= disbursedAmount === null?  '$0' : kendo.toString(disbursedAmount, 'c0')#"
+              template: "#= approvedCounterpart === null?  '$0' : kendo.toString(approvedCounterpart, 'c0')#"
             },{
               field: "designTeamleaderNm",
               title: configuration.gridheader.designTeamLeader,
               width:"200px",
               filterable: { cell: {operator: "contains"}},
+              attributes:{style:"text-align:center;"}
             }]
 
           /*this.childColumns = [
@@ -679,10 +633,7 @@ angular.module('ProjectsApp')
            { field: "name", aggregate: "count" },
            { field: "documentId", aggregate: "count" },
            { field: "originalApprovedAmount", aggregate: "sum" },
-           //{ field: "cancelledAmount", aggregate: "sum" },
-           //{ field: "increasedAmount", aggregate: "sum" },
-           //{ field: "currentApprovedAmount", aggregate: "sum" },
-           { field: "disbursedAmount", aggregate: "sum" },
+           { field: "approvedCounterpart", aggregate: "sum" },
            { field: "projectExecutorAcronym", aggregate: "count" },
            { field: "designTeamleaderNm", aggregate: "count" }
           ];
@@ -693,8 +644,7 @@ angular.module('ProjectsApp')
                     mifeDate: { type: "date"},
                     pdrEventDate: { type: "date"},
                     originalApprovedAmount: { type: "number", defaultValue:0},
-                    //currentApprovedAmount: { type: "number", defaultValue:0 },
-                    disbursedAmount: { type: "number", defaultValue:0 }
+                    approvedCounterpart: { type: "number", defaultValue:0}
                   }
               }
          };
@@ -708,11 +658,13 @@ angular.module('ProjectsApp')
             {
               field: "distribution",
               title: "Distribution Procedure",
+              attributes:{style:"text-align:center;"},
               template: "¡Pendiente!"
             },{
               field: "mifAccess",
               title: configuration.gridheader.access,
               width:"200px",
+              attributes:{style:"text-align:center;"},
               template: function(dataItem){
                  var tmp = '';
                  if(dataItem.mifAccess){
@@ -723,6 +675,7 @@ angular.module('ProjectsApp')
             },{
               field: "projectNum", title: configuration.gridheader.projectNumber,
               aggregates: "count",
+              attributes:{style:"text-align:center;"},
               groupHeaderTemplate: "Country: #= value # Total: #= count #"
             },{
               field: "name",
@@ -731,10 +684,12 @@ angular.module('ProjectsApp')
             },{
               field: "donorsDate",
               title: configuration.gridheader.donorsCommittee,
+              attributes:{style:"text-align:center;"},
               format: "{0: dd/MMM/yyyy}"
             },{
                 field: "designTeamleaderNm",
                 title: configuration.gridheader.designTeamLeader,
+                attributes:{style:"text-align:center;"},
                 filterable: { cell: {operator: "contains"}},
               }];
 

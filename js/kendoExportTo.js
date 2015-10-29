@@ -1,5 +1,5 @@
 var masterData;
-var RowsGroup=0, j=-1, allOpetarions = [], childColumns=[];
+var RowsGroup=0, j=-1, allOpetarions = [], childColumns=[], bgHeader="#CCC", titleHeader="#000";
 
 
 var exportToExcel = function(e, childCol, reporTitle, reportType){
@@ -9,6 +9,7 @@ var exportToExcel = function(e, childCol, reporTitle, reportType){
   j=-1;
   allOpetarions = [];
 
+  //Load the grid data to export
   var workbook = e.workbook;
 
   var detailExports = $.makeArray(arguments);
@@ -24,36 +25,63 @@ var exportToExcel = function(e, childCol, reporTitle, reportType){
   });
 
     // prepend an empty cell to each row
+  var dataSource = $("#grid").data("kendoGrid").dataSource;
+  RowsGroup = dataSource.group().length;
   for (var i = 0; i < workbook.sheets[0].rows.length; i++) {
     workbook.sheets[0].rows[i].cells.unshift({width: 30});
-     if(workbook.sheets[0].rows[i].type != 'header'){
+     if(workbook.sheets[0].rows[i].type != 'header' && workbook.sheets[0].rows[i].type != 'group-header'){
       //workbook.sheets[0].rows[i].cells[5].value = kendo.toString(new Date(workbook.sheets[0].rows[i].cells[5].value),"dd/MMM/yyyy");
       //workbook.sheets[0].rows[i].cells[12].value = kendo.toString(workbook.sheets[0].rows[i].cells[12].value, "c2");
       //workbook.sheets[0].rows[i].cells[13].value = kendo.toString(workbook.sheets[0].rows[i].cells[13].value, "c2");
-      // if(reportType == 'projects'){
-      //   workbook.sheets[0].rows[i].cells[13].format = "$#,###0";
-      //   workbook.sheets[0].rows[i].cells[14].format = "$#,###0";
-      //   workbook.sheets[0].rows[i].cells[15].format = "$#,###0";
-      //   workbook.sheets[0].rows[i].cells[16].format = "$#,###0";
-      //   workbook.sheets[0].rows[i].cells[17].format = "$#,###0";
-      //   workbook.sheets[0].rows[i].cells[18].format = "$#,###0";
-      // }else if(reportType == 'pipeline'){
-      //   workbook.sheets[0].rows[i].cells[8].value = workbook.sheets[0].rows[i].cells[8].value ? workbook.sheets[0].rows[i].cells[8].value : 0;
-      //   workbook.sheets[0].rows[i].cells[9].value = workbook.sheets[0].rows[i].cells[9].value ? workbook.sheets[0].rows[i].cells[9].value : 0;
-      //   workbook.sheets[0].rows[i].cells[10].value = workbook.sheets[0].rows[i].cells[10].value ? workbook.sheets[0].rows[i].cells[10].value : 0;
-      //
-      //   workbook.sheets[0].rows[i].cells[8].format = "$#,###0";
-      //   workbook.sheets[0].rows[i].cells[9].format = "$#,###0";
-      //   workbook.sheets[0].rows[i].cells[10].format = "$#,###0";
-      // }else if(reportType == 'inventory'){
-      //   workbook.sheets[0].rows[i].cells[9].value = workbook.sheets[0].rows[i].cells[9].value ? workbook.sheets[0].rows[i].cells[9].value : 0;
-      //   workbook.sheets[0].rows[i].cells[10].value = workbook.sheets[0].rows[i].cells[10].value ? workbook.sheets[0].rows[i].cells[10].value : 0;
-      //   workbook.sheets[0].rows[i].cells[11].value = workbook.sheets[0].rows[i].cells[11].value ? workbook.sheets[0].rows[i].cells[11].value : 0;
-      //   workbook.sheets[0].rows[i].cells[9].format = "$#,###0";
-      //   workbook.sheets[0].rows[i].cells[10].format = "$#,###0";
-      //   workbook.sheets[0].rows[i].cells[11].format = "$#,###0";
-      // }
+      if(reportType == 'projects'){
+        //Center columns
+        for (var k = 0; k < workbook.sheets[0].rows[i].cells.length; k++) {
+          if(k != (7+RowsGroup) && k != (13+RowsGroup) && k != (14+RowsGroup)) workbook.sheets[0].rows[i].cells[k].hAlign = "center";
+          if(k == (13+RowsGroup) || k == (14+RowsGroup)){
+            workbook.sheets[0].rows[i].cells[k].hAlign = "right";
+            //workbook.sheets[0].rows[i].cells[k].format = "$#,###0";
+          }
+        }
 
+        if(workbook.sheets[0].rows[i].cells[5+RowsGroup].value)workbook.sheets[0].rows[i].cells[5+RowsGroup].value = kendo.toString(new Date(workbook.sheets[0].rows[i].cells[5+RowsGroup].value), "dd-MMM-yyyy");
+
+        //workbook.sheets[0].rows[i].cells[13+RowsGroup].value = workbook.sheets[0].rows[i].cells[13+RowsGroup].value ? workbook.sheets[0].rows[i].cells[13+RowsGroup].value : 0;
+        //workbook.sheets[0].rows[i].cells[14+RowsGroup].value = workbook.sheets[0].rows[i].cells[14+RowsGroup].value ? workbook.sheets[0].rows[i].cells[14+RowsGroup].value : 0;
+
+        workbook.sheets[0].rows[i].cells[13+RowsGroup].format = "$#,###0";
+        workbook.sheets[0].rows[i].cells[14+RowsGroup].format = "$#,###0";
+        //workbook.sheets[0].rows[i].cells[18].format = "$#,###0";
+      }else if(reportType == 'pipeline'){
+        for (var k = 0; k < workbook.sheets[0].rows[i].cells.length; k++) {
+          if(k != (5+RowsGroup) && k != (10+RowsGroup) && k != (11+RowsGroup)) workbook.sheets[0].rows[i].cells[k].hAlign = "center";
+          if(k == (10+RowsGroup) || k == (11+RowsGroup)){
+            workbook.sheets[0].rows[i].cells[k].hAlign = "right";
+            //workbook.sheets[0].rows[i].cells[k].format = "$#,###0";
+          }
+        }
+        workbook.sheets[0].rows[i].cells[10+RowsGroup].value = workbook.sheets[0].rows[i].cells[10+RowsGroup].value ? workbook.sheets[0].rows[i].cells[10+RowsGroup].value : 0;
+        workbook.sheets[0].rows[i].cells[11+RowsGroup].value = workbook.sheets[0].rows[i].cells[11+RowsGroup].value ? workbook.sheets[0].rows[i].cells[11+RowsGroup].value : 0;
+
+        workbook.sheets[0].rows[i].cells[10+RowsGroup].format = "$#,###0";
+        workbook.sheets[0].rows[i].cells[11+RowsGroup].format = "$#,###0";
+      }else if(reportType == 'inventory'){
+        for (var k = 0; k < workbook.sheets[0].rows[i].cells.length; k++) {
+          if(k != (9+RowsGroup) && k != (10+RowsGroup)) workbook.sheets[0].rows[i].cells[k].hAlign = "center";
+          if(k == (9+RowsGroup) || k == (10+RowsGroup))workbook.sheets[0].rows[i].cells[k].hAlign = "right";
+        }
+
+        workbook.sheets[0].rows[i].cells[9+RowsGroup].value = workbook.sheets[0].rows[i].cells[9+RowsGroup].value ? workbook.sheets[0].rows[i].cells[9+RowsGroup].value : 0;
+        workbook.sheets[0].rows[i].cells[10+RowsGroup].value = workbook.sheets[0].rows[i].cells[10+RowsGroup].value ? workbook.sheets[0].rows[i].cells[10+RowsGroup].value : 0;
+        workbook.sheets[0].rows[i].cells[9+RowsGroup].format = "$#,###0";
+        workbook.sheets[0].rows[i].cells[10+RowsGroup].format = "$#,###0";
+      }
+
+    }else if(workbook.sheets[0].rows[i].type != 'group-header'){
+      for (var k = 0; k < workbook.sheets[0].rows[i].cells.length; k++) {
+        workbook.sheets[0].rows[i].cells[k].hAlign = "center";
+        workbook.sheets[0].rows[i].cells[k].background = bgHeader;
+        workbook.sheets[0].rows[i].cells[k].color = titleHeader;
+      }
     }
   }
 

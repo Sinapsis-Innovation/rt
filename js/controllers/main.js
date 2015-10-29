@@ -30,6 +30,9 @@ angularRoutingApp.controller('MainCtrl', function ($scope, $http, $timeout, grid
             } else if (item.mifeDateSts && item.mifeDateSts == 'Y') {
                 item.stage = 'I';
             }
+
+            //if(!item.originalApprovedAmount)  item.originalApprovedAmount = 0;
+            //if(!item.approvedCounterpart)  item.approvedCounterpart = 0;
         });
 
         gridConfig.globalProductList = response.data;

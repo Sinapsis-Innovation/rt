@@ -54,7 +54,7 @@ section.report { width: 96%;}
     white-space: nowrap;
 }*/
 
-.k-grid-header .k-header .k-link{color: #fff!important;}
+.k-grid-header .k-header .k-link{color: #fff!important; font-style: normal;}
 .k-grid-toolbar {text-align: right; background-color: transparent;}
 .k-grid-toolbar .k-button, .k-grouping-header .k-group-indicator, .k-pivot-toolbar .k-button {background-color: #666!important; border-color: transparent!important;}
 .k-grid-toolbar .k-button:hover {background-color: #333!important;}
