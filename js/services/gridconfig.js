@@ -19,6 +19,7 @@ angular.module('ProjectsApp')
     config.gridcolumnsGroup = [];
     config.gridAggregates = [];
     config.globalProductList = [];
+    config.ignoreColumns = [];
     config.configData = {};
     config.configSchema = {};
     config.detailExportPromises = [];
@@ -58,6 +59,7 @@ angular.module('ProjectsApp')
 
       switch(reportOption){
         case "projects":
+          this.ignoreColumns = ['countryBeneficiaryName', 'approvalYear','projectNum' ];
            this.parentColumns = [
              {
                field: "countryBeneficiaryName",
@@ -100,7 +102,7 @@ angular.module('ProjectsApp')
                field: "approvalDate",
                title: configuration.gridheader.approvalDate,
                format: "{0: dd/MMM/yyyy}",
-               width:"120px",
+               width:"100px",
                filterable : {
                   ui: function (element) {
                       element.kendoDatePicker({
@@ -114,7 +116,7 @@ angular.module('ProjectsApp')
              },{
                field: "documentId",
                title: configuration.gridheader.documentId,
-               width:"120px",
+               width:"100px",
                aggregates: ["count"],
                filterable: { cell: {operator: "contains"}},
                groupHeaderTemplate: configuration.gridheader.documentId + ": #=value# (#=count#)",
@@ -158,7 +160,7 @@ angular.module('ProjectsApp')
              },{
                field: "operationType",
                title: configuration.gridheader.type,
-               width:"150px",
+               width:"100px",
                aggregates: ["count"],
                groupHeaderTemplate: configuration.gridheader.type + ": #=value# (#=count#)",
                attributes:{style:"text-align:center;"}
@@ -261,6 +263,7 @@ angular.module('ProjectsApp')
 
         break;
         case 'pipeline':
+          this.ignoreColumns = ['countryBeneficiaryName', 'approvalYear','projectNum' ];
           this.parentColumns = [
             {
               field: "countryBeneficiaryName",
@@ -323,7 +326,7 @@ angular.module('ProjectsApp')
             },{
               field: "operationType",
               title: configuration.gridheader.type,
-              width:"150px",
+              width:"100px",
               groupHeaderTemplate: configuration.gridheader.type + ": #=value# (#=count#)",
               attributes:{style:"text-align:center;"}
             },{
