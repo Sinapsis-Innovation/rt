@@ -53,17 +53,28 @@ var exportToExcel = function(e, childCol, reporTitle, reportType){
         //workbook.sheets[0].rows[i].cells[18].format = "$#,###0";
       }else if(reportType == 'pipeline'){
         for (var k = 0; k < workbook.sheets[0].rows[i].cells.length; k++) {
-          if(k != (5+RowsGroup) && k != (10+RowsGroup) && k != (11+RowsGroup)) workbook.sheets[0].rows[i].cells[k].hAlign = "center";
-          if(k == (10+RowsGroup) || k == (11+RowsGroup)){
+          if(k != (4+RowsGroup) && k != (9+RowsGroup) && k != (10+RowsGroup)) workbook.sheets[0].rows[i].cells[k].hAlign = "center";
+          if(k == (9+RowsGroup) || k == (10+RowsGroup)){
             workbook.sheets[0].rows[i].cells[k].hAlign = "right";
             //workbook.sheets[0].rows[i].cells[k].format = "$#,###0";
           }
         }
+        //validar si hay valores nulos en los valores y asignar el cero
+        workbook.sheets[0].rows[i].cells[9+RowsGroup].value = workbook.sheets[0].rows[i].cells[9+RowsGroup].value ? workbook.sheets[0].rows[i].cells[9+RowsGroup].value : 0;
         workbook.sheets[0].rows[i].cells[10+RowsGroup].value = workbook.sheets[0].rows[i].cells[10+RowsGroup].value ? workbook.sheets[0].rows[i].cells[10+RowsGroup].value : 0;
-        workbook.sheets[0].rows[i].cells[11+RowsGroup].value = workbook.sheets[0].rows[i].cells[11+RowsGroup].value ? workbook.sheets[0].rows[i].cells[11+RowsGroup].value : 0;
 
+        //Formato moneda
+        workbook.sheets[0].rows[i].cells[9+RowsGroup].format = "$#,###0";
         workbook.sheets[0].rows[i].cells[10+RowsGroup].format = "$#,###0";
-        workbook.sheets[0].rows[i].cells[11+RowsGroup].format = "$#,###0";
+        //Formato fecha
+        workbook.sheets[0].rows[i].cells[11+RowsGroup].format = workbook.sheets[0].rows[i].cells[11+RowsGroup].value ? 'dd-MMM-yy' : '';
+        workbook.sheets[0].rows[i].cells[12+RowsGroup].format = workbook.sheets[0].rows[i].cells[12+RowsGroup].value ? 'dd-MMM-yy' : '';
+        workbook.sheets[0].rows[i].cells[13+RowsGroup].format = workbook.sheets[0].rows[i].cells[13+RowsGroup].value ? 'dd-MMM-yy' : '';
+        workbook.sheets[0].rows[i].cells[14+RowsGroup].format = workbook.sheets[0].rows[i].cells[14+RowsGroup].value ? 'dd-MMM-yy' : '';
+        workbook.sheets[0].rows[i].cells[15+RowsGroup].format = workbook.sheets[0].rows[i].cells[15+RowsGroup].value ? 'dd-MMM-yy' : '';
+        workbook.sheets[0].rows[i].cells[16+RowsGroup].format = workbook.sheets[0].rows[i].cells[16+RowsGroup].value ? 'dd-MMM-yy' : '';
+        workbook.sheets[0].rows[i].cells[17+RowsGroup].format = workbook.sheets[0].rows[i].cells[17+RowsGroup].value ? 'dd-MMM-yy' : '';
+
       }else if(reportType == 'inventory'){
         for (var k = 0; k < workbook.sheets[0].rows[i].cells.length; k++) {
           if(k != (9+RowsGroup) && k != (10+RowsGroup)) workbook.sheets[0].rows[i].cells[k].hAlign = "center";

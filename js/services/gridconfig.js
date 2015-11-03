@@ -334,7 +334,7 @@
                   };
 
                   this.configData = {
-                      projectStatus: ["APR"],
+                      status: ["APR"],
                       projectType: ["MIF"]
                   }; /*projectNumber: "CO-M1099", approvalYearFrom: ((new Date()).getFullYear() - 1)*/
                   this.reportTemplate = {
@@ -374,6 +374,7 @@
                           style: "text-align:center;"
                       },
                       aggregates: "count",
+                      footerTemplate: configuration.gridheader.operations + ": #=count#",
                       groupHeaderTemplate: configuration.gridheader.projectNumber + ": #=value# (#=count#)"
                   }, {
                       field: "name",
@@ -562,7 +563,6 @@
                       },
                       aggregates: "count",
                       groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
-                      footerTemplate: configuration.gridheader.operations + ": #=count#",
                       template: "#= operationNum === null?  ' ' : operationNum#"
                   }, {
                       field: "stage",
@@ -741,7 +741,7 @@
                       title: configuration.reports.pipeline
                   };
                   this.configData = {
-                      projectStatus: ["ON"],
+                      status: ["ON"],
                       /*projectNumber: "RG-M1278",*/
                       projectType: ["MIF"],
                       pipelineYearFrom: (new Date()).getFullYear(),
@@ -825,7 +825,6 @@
                       field: "financingType",
                       title: configuration.gridheader.financingType,
                       width: "150px",
-                      groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
                       attributes: {
                           style: "text-align:center;"
                       },
@@ -948,7 +947,7 @@
 
                   this.configData = {
                       projectType: ["SMP"],
-                      projectStatus: ["INV"]
+                      Status: ["INV"]
                   };
                   break;
 
