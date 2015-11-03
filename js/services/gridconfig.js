@@ -7,8 +7,8 @@
  * # gridConfig
  * Factory in the reportesApp.
  */
-angular.module('ProjectsApp')
-  .factory('gridConfig', function () {
+// angular.module('ProjectsApp')
+  angularRoutingApp.factory('gridConfig', function () {
       // Service logic
       // ...
       var config = {};
@@ -108,12 +108,12 @@ angular.module('ProjectsApp')
                   }, {
                       field: "approvalDate",
                       title: configuration.gridheader.approvalDate,
-                      format: "{0: dd/MMM/yyyy}",
+                      format: "{0: dd-MMM-yy}",
                       width: "100px",
                       filterable: {
                           ui: function (element) {
                               element.kendoDatePicker({
-                                  format: "dd/MMM/yyyy"
+                                  format: "dd-MMM-yy"
                               });
                           }
                       },
@@ -373,21 +373,8 @@ angular.module('ProjectsApp')
                       attributes: {
                           style: "text-align:center;"
                       },
-                      footerTemplate: configuration.gridheader.projects + ": #= window.calculateProjects()#",
+                      aggregates: "count",
                       groupHeaderTemplate: configuration.gridheader.projectNumber + ": #=value# (#=count#)"
-                  }, {
-                      field: "documentId",
-                      title: configuration.gridheader.documentId,
-                      width: "120px",
-                      filterable: {
-                          cell: {
-                              operator: "contains"
-                          }
-                      },
-                      attributes: {
-                          style: "text-align:center;"
-                      },
-                      groupHeaderTemplate: configuration.gridheader.documentId + ": #=value# (#=count#)"
                   }, {
                       field: "name",
                       title: configuration.gridheader.projectName,
@@ -397,6 +384,7 @@ angular.module('ProjectsApp')
                               operator: "contains"
                           }
                       },
+                      aggregates: "count",
                       groupHeaderTemplate: configuration.gridheader.projectName + ": #=value# (#=count#)"
                   }, {
                       field: "projectExecutorAcronym",
@@ -410,11 +398,13 @@ angular.module('ProjectsApp')
                               operator: "contains"
                           }
                       },
+                      aggregates: "count",
                       groupHeaderTemplate: configuration.gridheader.documentAcronym + ": #=value# (#=count#)"
                   }, {
                       field: "mifAccess",
                       title: configuration.gridheader.access,
                       width: "150px",
+                      aggregates: "count",
                       groupHeaderTemplate: configuration.gridheader.access + ": #=value# (#=count#)",
                       attributes: {
                           style: "text-align:center;"
@@ -430,6 +420,7 @@ angular.module('ProjectsApp')
                       field: "operationType",
                       title: configuration.gridheader.type,
                       width: "100px",
+                      aggregates: "count",
                       groupHeaderTemplate: configuration.gridheader.type + ": #=value# (#=count#)",
                       attributes: {
                           style: "text-align:center;"
@@ -438,6 +429,7 @@ angular.module('ProjectsApp')
                       field: "financingType",
                       title: configuration.gridheader.financingType,
                       width: "120px",
+                      aggregates: "count",
                       groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
                       attributes: {
                           style: "text-align:center;"
@@ -474,7 +466,9 @@ angular.module('ProjectsApp')
                       attributes: {
                           style: "text-align:center;"
                       },
-                      format: "{0: dd/MMM/yyyy}"
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
+                      format: "{0: dd-MMM-yy}"
                   }, {
                       field: "pdrEventDate",
                       title: "PDR",
@@ -482,7 +476,9 @@ angular.module('ProjectsApp')
                       attributes: {
                           style: "text-align:center;"
                       },
-                      format: "{0: dd/MMM/yyyy}"
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
+                      format: "{0: dd-MMM-yy}"
                   }, {
                       field: "qrrDate",
                       title: "QRR",
@@ -490,7 +486,9 @@ angular.module('ProjectsApp')
                       attributes: {
                           style: "text-align:center;"
                       },
-                      format: "{0: dd/MMM/yyyy}"
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
+                      format: "{0: dd-MMM-yy}"
                   }, {
                       field: "secDate",
                       title: "SEC",
@@ -498,7 +496,9 @@ angular.module('ProjectsApp')
                       attributes: {
                           style: "text-align:center;"
                       },
-                      format: "{0: dd/MMM/yyyy}"
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
+                      format: "{0: dd-MMM-yy}"
                   }, {
                       field: "sec2Date",
                       title: "SEC 2",
@@ -506,7 +506,9 @@ angular.module('ProjectsApp')
                       attributes: {
                           style: "text-align:center;"
                       },
-                      format: "{0: dd/MMM/yyyy}"
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
+                      format: "{0: dd-MMM-yy}"
                   }, {
                       field: "vppDate",
                       title: "VPP",
@@ -514,7 +516,9 @@ angular.module('ProjectsApp')
                       attributes: {
                           style: "text-align:center;"
                       },
-                      format: "{0: dd/MMM/yyyy}"
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
+                      format: "{0: dd-MMM-yy}"
                   }, {
                       field: "donorsDate",
                       title: "Donors commite Metting",
@@ -522,7 +526,9 @@ angular.module('ProjectsApp')
                       attributes: {
                           style: "text-align:center;"
                       },
-                      format: "{0: dd/MMM/yyyy}"
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
+                      format: "{0: dd-MMM-yy}"
                   }, {
                       field: "distribution",
                       title: "Distribution procedure",
@@ -530,7 +536,23 @@ angular.module('ProjectsApp')
                       attributes: {
                           style: "text-align:center;"
                       },
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
                       format: "¡Pendiente!"
+                  }, {
+                      field: "documentId",
+                      title: configuration.gridheader.documentId,
+                      width: "120px",
+                      filterable: {
+                          cell: {
+                              operator: "contains"
+                          }
+                      },
+                      attributes: {
+                          style: "text-align:center;"
+                      },
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.documentId + ": #=value# (#=count#)"
                   }, {
                       field: "operationNum",
                       title: configuration.gridheader.approvalNumber,
@@ -538,12 +560,16 @@ angular.module('ProjectsApp')
                       attributes: {
                           style: "text-align:center;"
                       },
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
                       footerTemplate: configuration.gridheader.operations + ": #=count#",
                       template: "#= operationNum === null?  ' ' : operationNum#"
                   }, {
                       field: "stage",
                       title: "Stage",
                       width: "90px",
+                      aggregates: "count",
+                      //groupHeaderTemplate: "Stage : #=value# (#=count#)",
                       attributes: {
                           style: "text-align:center;"
                       }
@@ -553,6 +579,8 @@ angular.module('ProjectsApp')
                       attributes: {
                           style: "text-align:center;"
                       },
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
                       width: "180px"
                   }];
 
@@ -635,7 +663,7 @@ angular.module('ProjectsApp')
                       aggregate: "count"
                   }, {
                       field: "projectNum",
-                      aggregate: "average"
+                      aggregate: "count"
                   }, {
                       field: "operationNum",
                       aggregate: "count"
@@ -654,15 +682,21 @@ angular.module('ProjectsApp')
                   }, {
                       field: "originalApprovedAmount",
                       aggregate: "sum"
-                  }, {
+                  },{
+                      field: "stage",
+                      aggregate: "count"
+                  },{
                       field: "approvedCounterpart",
                       aggregate: "sum"
-                  }, {
+                  },{
                       field: "projectExecutorAcronym",
                       aggregate: "count"
                   }, {
                       field: "designTeamleaderNm",
                       aggregate: "count"
+                  },{
+                    field: "distribution",
+                    aggregate: "count"
                   }];
 
                   this.configSchema = {
@@ -718,12 +752,14 @@ angular.module('ProjectsApp')
                   this.ignoreColumns = [];
                   this.parentColumns = [{
                       field: "projectNum",
+                      title: configuration.gridheader.inventoryNumber,
                       width: "150px",
                       attributes: {
                           style: "text-align:center;"
                       },
                       footerTemplate: configuration.gridheader.projects + ": #= window.calculateProjects()#",
-                      title: configuration.gridheader.inventoryNumber
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.inventoryNumber + ": #=value# (#=count#)"
                   }, {
                       field: "countryBeneficiaryName",
                       title: configuration.gridheader.country,
@@ -735,6 +771,8 @@ angular.module('ProjectsApp')
                           style: " text-transform:uppercase;"
                       },
                       template: "#= countryBeneficiaryName === null?  projectInstitutionCountryName : countryBeneficiaryName#",
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.country + ": #=value# (#=count#)"
                   }, {
                       field: "mifAccess",
                       title: configuration.gridheader.access,
@@ -748,7 +786,9 @@ angular.module('ProjectsApp')
                               tmp = dataItem.mifAccess + ' : ' + dataItem.mifAccessname;
                           }
                           return tmp;
-                      }
+                      },
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.access + ": #=value# (#=count#)"
                   }, {
                       field: "name",
                       title: configuration.gridheader.projectName,
@@ -757,6 +797,8 @@ angular.module('ProjectsApp')
                               operator: "contains"
                           }
                       },
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.projectName + ": #=value# (#=count#)"
                   }, {
                       field: "projectExecutorAcronym",
                       title: configuration.gridheader.documentAcronym,
@@ -768,20 +810,17 @@ angular.module('ProjectsApp')
                               operator: "contains"
                           }
                       },
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.documentAcronym + ": #=value# (#=count#)"
                   }, {
                       field: "projectType",
+                      title: configuration.gridheader.projectType,
                       width: "100px",
                       attributes: {
                           style: "text-align:center;"
                       },
-                      title: configuration.gridheader.projectType
-                  }, {
-                      field: "financingType",
-                      title: configuration.gridheader.financingType,
-                      width: "120px",
-                      attributes: {
-                          style: "text-align:center;"
-                      }
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.projectType + ": #=value# (#=count#)"
                   }, {
                       field: "financingType",
                       title: configuration.gridheader.financingType,
@@ -789,7 +828,9 @@ angular.module('ProjectsApp')
                       groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
                       attributes: {
                           style: "text-align:center;"
-                      }
+                      },
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)"
                   }, {
                       field: "originalApprovedAmount",
                       title: configuration.gridheader.originalApprovedAmount,
@@ -826,7 +867,9 @@ angular.module('ProjectsApp')
                       },
                       attributes: {
                           style: "text-align:center;"
-                      }
+                      },
+                      aggregates: "count",
+                      groupHeaderTemplate: configuration.gridheader.designTeamLeader + ": #=value# (#=count#)"
                   }]
 
                   /*this.childColumns = [
@@ -954,7 +997,7 @@ angular.module('ProjectsApp')
                       attributes: {
                           style: "text-align:center;"
                       },
-                      format: "{0: dd/MMM/yyyy}"
+                      format: "{0: dd-MMM-yy}"
                   }, {
                       field: "designTeamleaderNm",
                       title: configuration.gridheader.designTeamLeader,
