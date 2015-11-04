@@ -17,6 +17,8 @@ angularRoutingApp.controller('MainCtrl', function ($scope, $http, $timeout, grid
     $scope.reportType = $routeParams.project ? $routeParams.project : 'projects';
 
     gridConfig.columnsGrid($scope.reportType);
+
+
     /*Crear libreria js comun [incluir aqui nombre meses]*/
     var userInformationComplete = function (response) {
 
@@ -33,6 +35,7 @@ angularRoutingApp.controller('MainCtrl', function ($scope, $http, $timeout, grid
 
             if(!item.originalApprovedAmount) item.originalApprovedAmount = 0;
             if(!item.approvedCounterpart) item.approvedCounterpart = 0;
+            //if(!item.mifeDate) item.mifeDate = kendo.toString(kendo.parseDate(item.mifeDate), 'dd-MMM-yy');
         });
 
         gridConfig.globalProductList = response.data;
@@ -122,7 +125,7 @@ angularRoutingApp.controller('MainCtrl', function ($scope, $http, $timeout, grid
                     console.log(gridConfig.ignoreColumns);
                 }
 
-                grid.dataSource.pageSize(15);
+                grid.dataSource.pageSize(8);
                 //Desbloquear columnas antes de exportar a pdf
                 grid.unlockColumn("pipelineYear");
                 grid.unlockColumn("projectNum");
@@ -167,12 +170,12 @@ angularRoutingApp.controller('MainCtrl', function ($scope, $http, $timeout, grid
             sortable: true,
             scrollable: true,
             resizable: true,
-            pageable: true,
-            /*pageable: {
+            //pageable: true,
+            pageable: {
                         refresh: false,
-                        pageSizes: true,
-                        buttonCount: 10
-                    },*/
+                        pageSizes: [10,20,30,40,50]
+                        //buttonCount: 10
+                    },
             //detailInit: detailInit,
             dataSource: localDataSource,
             columns: gridConfig.parentColumns

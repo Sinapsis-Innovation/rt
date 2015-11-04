@@ -48,8 +48,10 @@ var exportToExcel = function(e, childCol, reporTitle, reportType){
         //workbook.sheets[0].rows[i].cells[13+RowsGroup].value = workbook.sheets[0].rows[i].cells[13+RowsGroup].value ? workbook.sheets[0].rows[i].cells[13+RowsGroup].value : 0;
         //workbook.sheets[0].rows[i].cells[14+RowsGroup].value = workbook.sheets[0].rows[i].cells[14+RowsGroup].value ? workbook.sheets[0].rows[i].cells[14+RowsGroup].value : 0;
 
-        workbook.sheets[0].rows[i].cells[13+RowsGroup].format = "$#,###0";
-        workbook.sheets[0].rows[i].cells[14+RowsGroup].format = "$#,###0";
+        workbook.sheets[0].rows[i].cells[13+RowsGroup].format = "_-$* #,###0";
+        if(typeof workbook.sheets[0].rows[i].cells[13+RowsGroup].value != "number")workbook.sheets[0].rows[i].cells[13+RowsGroup].value = kendo.parseInt(workbook.sheets[0].rows[i].cells[13+RowsGroup].value.replace("<span style='float:left;'>$</span>", ""));
+        workbook.sheets[0].rows[i].cells[14+RowsGroup].format = "_-$* #,###0";
+        if(typeof workbook.sheets[0].rows[i].cells[14+RowsGroup].value != "number")workbook.sheets[0].rows[i].cells[14+RowsGroup].value = kendo.parseInt(workbook.sheets[0].rows[i].cells[14+RowsGroup].value.replace("<span style='float:left;'>$</span>", ""));
         //workbook.sheets[0].rows[i].cells[18].format = "$#,###0";
       }else if(reportType == 'pipeline'){
         for (var k = 0; k < workbook.sheets[0].rows[i].cells.length; k++) {
@@ -64,8 +66,10 @@ var exportToExcel = function(e, childCol, reporTitle, reportType){
         workbook.sheets[0].rows[i].cells[10+RowsGroup].value = workbook.sheets[0].rows[i].cells[10+RowsGroup].value ? workbook.sheets[0].rows[i].cells[10+RowsGroup].value : 0;
 
         //Formato moneda
-        workbook.sheets[0].rows[i].cells[9+RowsGroup].format = "$#,###0";
-        workbook.sheets[0].rows[i].cells[10+RowsGroup].format = "$#,###0";
+        workbook.sheets[0].rows[i].cells[9+RowsGroup].format = "_-$* #,###0";
+        if(typeof workbook.sheets[0].rows[i].cells[9+RowsGroup].value != "number")workbook.sheets[0].rows[i].cells[9+RowsGroup].value = kendo.parseInt(workbook.sheets[0].rows[i].cells[9+RowsGroup].value.replace("<span style='float:left;'>$</span>", ""));
+        workbook.sheets[0].rows[i].cells[10+RowsGroup].format = "_-$* #,###0";
+        if(typeof workbook.sheets[0].rows[i].cells[10+RowsGroup].value != "number")workbook.sheets[0].rows[i].cells[10+RowsGroup].value = kendo.parseInt(workbook.sheets[0].rows[i].cells[10+RowsGroup].value.replace("<span style='float:left;'>$</span>", ""));
         //Formato fecha
         workbook.sheets[0].rows[i].cells[11+RowsGroup].format = workbook.sheets[0].rows[i].cells[11+RowsGroup].value ? 'dd-MMM-yy' : '';
         workbook.sheets[0].rows[i].cells[12+RowsGroup].format = workbook.sheets[0].rows[i].cells[12+RowsGroup].value ? 'dd-MMM-yy' : '';
@@ -83,8 +87,11 @@ var exportToExcel = function(e, childCol, reporTitle, reportType){
 
         workbook.sheets[0].rows[i].cells[9+RowsGroup].value = workbook.sheets[0].rows[i].cells[9+RowsGroup].value ? workbook.sheets[0].rows[i].cells[9+RowsGroup].value : 0;
         workbook.sheets[0].rows[i].cells[10+RowsGroup].value = workbook.sheets[0].rows[i].cells[10+RowsGroup].value ? workbook.sheets[0].rows[i].cells[10+RowsGroup].value : 0;
-        workbook.sheets[0].rows[i].cells[9+RowsGroup].format = "$#,###0";
-        workbook.sheets[0].rows[i].cells[10+RowsGroup].format = "$#,###0";
+
+        workbook.sheets[0].rows[i].cells[9+RowsGroup].format = "_-$* #,###0";
+        if(typeof workbook.sheets[0].rows[i].cells[9+RowsGroup].value != "number")workbook.sheets[0].rows[i].cells[9+RowsGroup].value = kendo.parseInt(workbook.sheets[0].rows[i].cells[9+RowsGroup].value.replace("<span style='float:left;'>$</span>", ""));
+        workbook.sheets[0].rows[i].cells[10+RowsGroup].format = "_-$* #,###0";
+        if(typeof workbook.sheets[0].rows[i].cells[10+RowsGroup].value != "number")workbook.sheets[0].rows[i].cells[10+RowsGroup].value = kendo.parseInt(workbook.sheets[0].rows[i].cells[10+RowsGroup].value.replace("<span style='float:left;'>$</span>", ""));
       }
 
     }else if(workbook.sheets[0].rows[i].type != 'group-header'){

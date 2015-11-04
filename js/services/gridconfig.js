@@ -65,6 +65,7 @@
                       title: configuration.gridheader.country,
                       locked: true,
                       width: "100px",
+                      filterable: { multi: true },
                       aggregates: "count",
                       footerTemplate: "Total",
                       groupHeaderTemplate: configuration.gridheader.country + ": #=value# (#=count#)",
@@ -165,6 +166,7 @@
                       field: "mifAccess",
                       title: configuration.gridheader.access,
                       width: "150px",
+                      filterable: { multi: true },
                       aggregates: ["count"],
                       groupHeaderTemplate: configuration.gridheader.access + ": #=value# (#=count#)",
                       template: function (dataItem) {
@@ -181,6 +183,7 @@
                       field: "operationFund",
                       title: configuration.gridheader.operationFund,
                       width: "100px",
+                      filterable: { multi: true },
                       aggregates: ["count"],
                       groupHeaderTemplate: configuration.gridheader.operationFund + ": #=value# (#=count#)",
                       attributes: {
@@ -189,6 +192,7 @@
                   }, {
                       field: "operationType",
                       title: configuration.gridheader.type,
+                      filterable: { multi: true },
                       width: "100px",
                       aggregates: ["count"],
                       groupHeaderTemplate: configuration.gridheader.type + ": #=value# (#=count#)",
@@ -207,22 +211,23 @@
                   }, {
                       field: "originalApprovedAmount",
                       title: configuration.gridheader.originalApprovedAmount,
-                      width: "150px",
+                      width: "140px",
                       format: '{0:c0}',
                       aggregates: ["sum"],
-                      footerTemplate: "#= kendo.toString(sum, 'c0') #",
-                      groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
+                      footerTemplate: "<span style='float:left;'>$</span>#= kendo.toString(sum, 'n0')#",
+                      groupFooterTemplate: "<span style='float:left;'>$</span>#= kendo.toString(sum, 'n0')#",
+                      template: "<span style='float:left;'>$</span>#= originalApprovedAmount === null?  '0' : kendo.toString(originalApprovedAmount, 'n0')#",
                       attributes: {
                           style: "text-align:right;"
                       }
                   }, {
                       field: "approvedCounterpart",
                       title: configuration.gridheader.counterAmount,
-                      width: "150px",
-                      format: '{0:c0}',
+                      width: "140px",
                       aggregates: ["sum"],
-                      footerTemplate: "#= kendo.toString(sum, 'c0') #",
-                      groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
+                      footerTemplate: "<span style='float:left;'>$</span>#= kendo.toString(sum, 'n0')#",
+                      groupFooterTemplate: "<span style='float:left;'>$</span>#= kendo.toString(sum, 'n0')#",
+                      template: "<span style='float:left;'>$</span>#= approvedCounterpart === null?  '0' : kendo.toString(approvedCounterpart, 'n0')#",
                       attributes: {
                           style: "text-align:right;",
                           class: "numbers"
@@ -253,6 +258,7 @@
                   }, {
                       field: "operationStatus",
                       title: configuration.gridheader.status,
+                      filterable: { multi: true },
                       width: "100px",
                       aggregates: ["count"],
                       groupHeaderTemplate: configuration.gridheader.status + ": #=value# (#=count#)",
@@ -347,6 +353,7 @@
                   this.parentColumns = [{
                       field: "countryBeneficiaryName",
                       title: configuration.gridheader.country,
+                      filterable: { multi: true },
                       locked: true,
                       width: "100px",
                       aggregates: "count",
@@ -420,6 +427,7 @@
                   }, {
                       field: "operationType",
                       title: configuration.gridheader.type,
+                      filterable: { multi: true },
                       width: "100px",
                       aggregates: "count",
                       groupHeaderTemplate: configuration.gridheader.type + ": #=value# (#=count#)",
@@ -429,6 +437,7 @@
                   }, {
                       field: "financingType",
                       title: configuration.gridheader.financingType,
+                      filterable: { multi: true },
                       width: "120px",
                       aggregates: "count",
                       groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
@@ -439,31 +448,37 @@
                       field: "originalApprovedAmount",
                       title: configuration.gridheader.originalApprovedAmount,
                       width: "150px",
-                      format: '{0:c0}',
                       aggregates: ["sum"],
-                      footerTemplate: "#= kendo.toString(sum, 'c0') #",
-                      groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
+                      footerTemplate: "<span style='float:left;'>$</span>#= kendo.toString(sum, 'n0')#",
+                      groupFooterTemplate: "<span style='float:left;'>$</span>#= kendo.toString(sum, 'n0')#",
                       attributes: {
                           style: "text-align:right;"
                       },
-                      template: "#= originalApprovedAmount === null?  '$0' : kendo.toString(originalApprovedAmount, 'c0')#"
+                      template: "<span style='float:left;'>$</span>#= originalApprovedAmount === null?  '0' : kendo.toString(originalApprovedAmount, 'n0')#"
+                      //template: "#= originalApprovedAmount === null?  '$0' : kendo.toString(originalApprovedAmount, 'c0')#"
                   }, {
                       field: "approvedCounterpart",
                       title: configuration.gridheader.counterAmount,
                       width: "150px",
-                      format: '{0:c0}',
                       aggregates: ["sum"],
-                      footerTemplate: "#= kendo.toString(sum, 'c0') #",
-                      groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
+                      footerTemplate: "<span style='float:left;'>$</span>#= kendo.toString(sum, 'n0')#",
+                      groupFooterTemplate: "<span style='float:left;'>$</span>#= kendo.toString(sum, 'n0')#",
                       attributes: {
                           style: "text-align:right;",
                           class: "numbers"
                       },
-                      template: "#= approvedCounterpart === null?  '$0' : kendo.toString(approvedCounterpart, 'c0')#"
+                      template: "<span style='float:left;'>$</span>#= approvedCounterpart === null?  '0' : kendo.toString(approvedCounterpart, 'n0')#"
                   }, {
                       field: "mifeDate",
                       title: "MIFE",
                       width: "100px",
+                      filterable: {
+                        ui: function (element) {
+                            element.kendoDatePicker({
+                               format: "dd-MMM-yy"
+                            });
+                            }
+                      },
                       attributes: {
                           style: "text-align:center;"
                       },
@@ -530,7 +545,7 @@
                       aggregates: "count",
                       groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
                       format: "{0: dd-MMM-yy}"
-                  }, {
+                  }, /*{
                       field: "distribution",
                       title: "Distribution procedure",
                       width: "180px",
@@ -540,7 +555,7 @@
                       aggregates: "count",
                       groupHeaderTemplate: configuration.gridheader.financingType + ": #=value# (#=count#)",
                       format: "¡Pendiente!"
-                  }, {
+                  }, */{
                       field: "documentId",
                       title: configuration.gridheader.documentId,
                       width: "120px",
@@ -567,6 +582,7 @@
                   }, {
                       field: "stage",
                       title: "Stage",
+                      filterable: { multi: true },
                       width: "90px",
                       aggregates: "count",
                       //groupHeaderTemplate: "Stage : #=value# (#=count#)",
@@ -694,10 +710,10 @@
                   }, {
                       field: "designTeamleaderNm",
                       aggregate: "count"
-                  },{
+                  }/*,{
                     field: "distribution",
                     aggregate: "count"
-                  }];
+                  }*/];
 
                   this.configSchema = {
                       model: {
@@ -723,12 +739,12 @@
                               donorsDate: {
                                   type: "date"
                               },
-                              distribution: {
+                              /*distribution: {
                                   defaultValue: {
                                       DistributionID: 1,
                                       DistributionName: "Standard - For Consideration"
                                   }
-                              },
+                              },*/
                               originalApprovedAmount: {
                                   type: "number",
                                   defaultValue: 0
@@ -763,12 +779,10 @@
                   }, {
                       field: "countryBeneficiaryName",
                       title: configuration.gridheader.country,
+                      filterable: { multi: true },
                       width: "100px",
                       attributes: {
                           style: "text-align:center;"
-                      },
-                      attributes: {
-                          style: " text-transform:uppercase;"
                       },
                       template: "#= countryBeneficiaryName === null?  projectInstitutionCountryName : countryBeneficiaryName#",
                       aggregates: "count",
@@ -776,6 +790,7 @@
                   }, {
                       field: "mifAccess",
                       title: configuration.gridheader.access,
+                      filterable: { multi: true },
                       width: "200px",
                       attributes: {
                           style: "text-align:center;"
@@ -815,6 +830,7 @@
                   }, {
                       field: "projectType",
                       title: configuration.gridheader.projectType,
+                      filterable: { multi: true },
                       width: "100px",
                       attributes: {
                           style: "text-align:center;"
@@ -824,6 +840,7 @@
                   }, {
                       field: "financingType",
                       title: configuration.gridheader.financingType,
+                      filterable: { multi: true },
                       width: "150px",
                       attributes: {
                           style: "text-align:center;"
@@ -834,27 +851,25 @@
                       field: "originalApprovedAmount",
                       title: configuration.gridheader.originalApprovedAmount,
                       width: "150px",
-                      format: '{0:c0}',
                       aggregates: ["sum"],
-                      footerTemplate: "#= kendo.toString(sum, 'c0') === null? '$0' :  kendo.toString(sum, 'c0') #",
-                      groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
+                      footerTemplate: "<span style='float:left;'>$</span>#= kendo.toString(sum, 'n0')#",
+                      template: "<span style='float:left;'>$</span>#= originalApprovedAmount === null?  '0' : kendo.toString(originalApprovedAmount, 'n0')#",
+                      groupFooterTemplate: "<span style='float:left;'>$</span>#= kendo.toString(sum, 'n0')#",
                       attributes: {
                           style: "text-align:right;"
-                      },
-                      template: "#= originalApprovedAmount === null?  '$0' : kendo.toString(originalApprovedAmount, 'c0')#"
+                      }
                   }, {
                       field: "approvedCounterpart",
                       title: configuration.gridheader.counterAmount,
                       width: "150px",
-                      format: '{0:c0}',
                       aggregates: ["sum"],
-                      footerTemplate: "#= kendo.toString(sum, 'c0') === null? '$0' :  kendo.toString(sum, 'c0') #",
-                      groupFooterTemplate: "#= kendo.toString(sum, 'c0') #",
+                      footerTemplate: "<span style='float:left;'>$</span>#= kendo.toString(sum, 'n0')#",
+                      template: "<span style='float:left;'>$</span>#= approvedCounterpart === null?  '0' : kendo.toString(approvedCounterpart, 'n0')#",
+                      groupFooterTemplate: "<span style='float:left;'>$</span>#= kendo.toString(sum, 'n0')#",
                       attributes: {
                           style: "text-align:right;",
                           class: "numbers"
-                      },
-                      template: "#= approvedCounterpart === null?  '$0' : kendo.toString(approvedCounterpart, 'c0')#"
+                      }
                   }, {
                       field: "designTeamleaderNm",
                       title: configuration.gridheader.designTeamLeader,
@@ -947,22 +962,23 @@
 
                   this.configData = {
                       projectType: ["SMP"],
-                      Status: ["INV"]
+                      status: ["INV"]
                   };
                   break;
 
 
               case 'donors':
-                  this.parentColumns = [{
+                  this.parentColumns = [/*{
                       field: "distribution",
                       title: "Distribution Procedure",
                       attributes: {
                           style: "text-align:center;"
                       },
                       template: "¡Pendiente!"
-                  }, {
+                  }, */{
                       field: "mifAccess",
                       title: configuration.gridheader.access,
+                      filterable: { multi: true },
                       width: "200px",
                       attributes: {
                           style: "text-align:center;"
@@ -1024,7 +1040,7 @@
 
                   this.configData = {
                       projectType: ["MIF"],
-                      projectStatus: ["DM"]
+                      status: ["DM"]
                   };
                   break;
           }
