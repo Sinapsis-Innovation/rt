@@ -35,7 +35,39 @@ angularRoutingApp.controller('MainCtrl', function ($scope, $http, $timeout, grid
 
             if(!item.originalApprovedAmount) item.originalApprovedAmount = 0;
             if(!item.approvedCounterpart) item.approvedCounterpart = 0;
-            //if(!item.mifeDate) item.mifeDate = kendo.toString(kendo.parseDate(item.mifeDate), 'dd-MMM-yy');
+            var formatDate;
+            if(item.approvalDate){
+              formatDate = new Date(item.approvalDate);
+              item.approvalDate = new Date(formatDate.setDate(formatDate.getDate()+1));
+            }
+            if(item.mifeDate){
+              formatDate = new Date(item.mifeDate);
+              item.mifeDate = new Date(formatDate.setDate(formatDate.getDate()+1));
+            }
+            if(item.pdrEventDate){
+              formatDate = new Date(item.pdrEventDate);
+              item.pdrEventDate = new Date(formatDate.setDate(formatDate.getDate()+1));
+            }
+            if(item.qrrDate){
+              formatDate = new Date(item.qrrDate);
+              item.qrrDate = new Date(formatDate.setDate(formatDate.getDate()+1));
+            }
+            if(item.secDate){
+              formatDate = new Date(item.secDate);
+              item.secDate = new Date(formatDate.setDate(formatDate.getDate()+1));
+            }
+            if(item.sec2Date){
+              formatDate = new Date(item.sec2Date);
+              item.sec2Date = new Date(formatDate.setDate(formatDate.getDate()+1));
+            }
+            if(item.vppDate){
+              formatDate = new Date(item.vppDate);
+              item.vppDate = new Date(formatDate.setDate(formatDate.getDate()+1));
+            }
+            if(item.donorsDate){
+              formatDate = new Date(item.donorsDate);
+              item.donorsDate = new Date(formatDate.setDate(formatDate.getDate()+1));
+            }
         });
 
         gridConfig.globalProductList = response.data;

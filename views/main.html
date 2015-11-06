@@ -37,6 +37,29 @@
     border: 2px solid black;
   }
 </style>
+<div class="navi">
+  <a class="button {{reportType === 'projects' ? 'active' : ''}}" href="#/projects" title="" id="icon-1">
+    <div>
+      <span>Projects Aproved</span>
+    </div>
+  </a>
+  <a class="button {{reportType === 'pipeline' ? 'active' : ''}}" href="#/pipeline" title="" id="icon-2">
+    <div>
+      <span>Pipeline + 2 years</span>
+    </div>
+  </a>
+  <a class="button {{reportType === 'inventory' ? 'active' : ''}}" href="#/inventory" title="" id="icon-3">
+    <div>
+      <span>Inventoy + 2 years</span>
+    </div>
+  </a>
+  <a class="button {{reportType === 'donors' ? 'active' : ''}}" href="#/donors" title="" id="icon-4">
+    <div>
+      <span>Projects to Donors Committee</span>
+    </div>
+  </a>
+</div>
+
 <section class="report">
   <!-- <div class="pdf-header" ng-class="{pdf : pdf}">
     <img src="images/logo.jpg" alt="">

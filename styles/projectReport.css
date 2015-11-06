@@ -144,3 +144,67 @@ section.report {
   -moz-opacity:0.5;
   filter: alpha(opacity=70);
 }
+
+/* menu view navegation*/
+.navi { clear: both; display: table; margin: 15px auto;}
+.navi .button {
+	float: left;
+    cursor: pointer;
+    width: 158px;
+    height: 42px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 1.3em;
+    padding: 5px;
+    margin: 0 8px 3px 0;
+    text-decoration: none;
+    color: #333;
+    background-color: #E8E8E8;
+    font-size: 1.2em;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.button:hover, .button.active  {
+    background-color: #f5f5f5;
+    color: #333;
+    -webkit-box-shadow: 0 3px 0 0 rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 3px 0 0 rgba(0,0,0,0.75);
+    box-shadow: 0 3px 0 0 rgba(0,0,0,0.75);
+}
+
+.navi .button span {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.navi .button div {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+
+@media (min-width:768px) and (max-width:979px) {
+    .navi .button {
+        width: 332px;
+    }
+}
+
+@media (min-width:588px) and (max-width: 767px) {
+    .navi .button {
+        width: 244px;
+    }
+}
+
+@media (min-width:410px) and (max-width: 587px) {
+    .navi .button {
+        width: 156px;
+    }
+}
+
+@media (max-width: 409px) {
+    .navi .button {
+        width: 120px;
+    }
+}
