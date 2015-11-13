@@ -33,29 +33,34 @@
 </style>
 
 <style>
-  .k-pdf-export p {
+  /*.k-pdf-export p {
     border: 2px solid black;
-  }
+  }*/
 </style>
 <div class="navi">
   <a class="button {{reportType === 'projects' ? 'active' : ''}}" href="#/projects" title="" id="icon-1">
     <div>
-      <span>Projects Aproved</span>
+      <span>{{menuTitles.approvedProjects}}</span>
     </div>
   </a>
   <a class="button {{reportType === 'pipeline' ? 'active' : ''}}" href="#/pipeline" title="" id="icon-2">
     <div>
-      <span>Pipeline + 2 years</span>
+      <span>{{menuTitles.pipelineProjects}}</span>
     </div>
   </a>
   <a class="button {{reportType === 'inventory' ? 'active' : ''}}" href="#/inventory" title="" id="icon-3">
     <div>
-      <span>Inventoy + 2 years</span>
+      <span>{{menuTitles.inventoryProjects}}</span>
     </div>
   </a>
   <a class="button {{reportType === 'donors' ? 'active' : ''}}" href="#/donors" title="" id="icon-4">
     <div>
-      <span>Projects to Donors Committee</span>
+      <span>{{menuTitles.donorsProjects}}</span>
+    </div>
+  </a>
+  <a class="button" onclick="location.reload();" title="" id="icon-4">
+    <div>
+      <span>{{menuTitles.refresh}}</span>
     </div>
   </a>
 </div>
