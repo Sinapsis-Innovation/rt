@@ -59,7 +59,7 @@ angularRoutingApp.factory('gridConfig', function() {
 
     switch (reportOption) {
       case "projects":
-        this.ignoreColumns = ["approvalYear", "approvalDate", "documentId", "operationFund", "operationType", "financingType"];
+        this.ignoreColumns = ["approvalDate", "documentId", "operationFund", "operationType", "financingType"];
         this.parentColumns = [{
           field: "countryBeneficiaryName",
           title: configuration.gridheader.country,
@@ -351,7 +351,7 @@ angularRoutingApp.factory('gridConfig', function() {
 
         this.configData = {
           status: ["APR"],
-          projectType: ["MIF"]
+          projectType: ["MIF"]        
         }; /*projectNumber: "CO-M1099", approvalYearFrom: ((new Date()).getFullYear() - 1)*/
         this.reportTemplate = {
           title: configuration.menu.approvedProjects
@@ -359,7 +359,7 @@ angularRoutingApp.factory('gridConfig', function() {
 
         break;
       case 'pipeline':
-        this.ignoreColumns = ["pipelineYear", "operationType", "financingType", "pdrEventDate", "sec2Date", "vppDate", "documentId", "operationNum"];
+        this.ignoreColumns = ["operationType", "financingType", "pdrEventDate", "sec2Date", "vppDate", "documentId", "operationNum"];
         this.parentColumns = [{
             field: "countryBeneficiaryName",
             title: configuration.gridheader.country,
@@ -393,7 +393,8 @@ angularRoutingApp.factory('gridConfig', function() {
               style: "text-align:center;"
             },
             aggregates: "count",
-            footerTemplate: configuration.gridheader.operations + ": #=count#",
+            //footerTemplate: configuration.gridheader.operations + ": #=count#",
+            footerTemplate: configuration.gridheader.projects + ": #= window.calculateProjects()#",
             groupHeaderTemplate: configuration.gridheader.projectNumber + ": #=value# (#=count#)"
           }, {
             field: "name",
@@ -610,6 +611,7 @@ angularRoutingApp.factory('gridConfig', function() {
             field: "stage",
             title: "Stage",
             filterable: {
+              //ui: window.stageFilter
               multi: true
             },
             width: "90px",

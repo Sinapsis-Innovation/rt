@@ -152,6 +152,19 @@ angularRoutingApp.controller('MainCtrl', function($scope, $http, $timeout, gridC
       return projectList.length;
     }
 
+    var stageItems = [{
+      stageID: "I",
+      stage: "I"
+    }];
+
+    window.stageFilter = function(element) {
+      element.kendoDropDownList({
+        dataTextField: "stage",
+        dataValueField: "stageID",
+        dataSource: stageItems
+      });
+    }
+
 
 
     var localDataSource = new kendo.data.DataSource({
@@ -182,7 +195,7 @@ angularRoutingApp.controller('MainCtrl', function($scope, $http, $timeout, gridC
       pdfExport: function(e) {
         var grid = $("#grid").data("kendoGrid");
         //Agregar o quitar columnas antes de exportar a pdf
-        $("#grid").width(2300);
+        $("#grid").width(2350);
 
         for (var i = 0; i <= gridConfig.ignoreColumns.length; i++) {
           grid.hideColumn(gridConfig.ignoreColumns[i]);
@@ -193,11 +206,14 @@ angularRoutingApp.controller('MainCtrl', function($scope, $http, $timeout, gridC
         grid.dataSource.pageSize(rowsPerPage);
         //Desbloquear columnas antes de exportar a pdf
         if ($scope.reportType != "inventory" && $scope.reportType != "donors") {
-          grid.unlockColumn("countryBeneficiaryName");
-          grid.unlockColumn("approvalYear");
-          grid.unlockColumn("projectNum");
+          grid.unlockColumn("operationNum");
           grid.unlockColumn("pipelineYear");
-        }
+          grid.unlockColumn("projectNum");
+          grid.unlockColumn("approvalYear");
+          grid.unlockColumn("countryBeneficiaryName");
+
+        };
+
 
         //this.expandRow(this.tbody.find("tr.k-master-row"));
         e.promise.progress(function(e) {
@@ -211,11 +227,13 @@ angularRoutingApp.controller('MainCtrl', function($scope, $http, $timeout, gridC
             grid.showColumn(gridConfig.ignoreColumns[i]);
           };
           if ($scope.reportType != "inventory" && $scope.reportType != "donors") {
-            grid.lockColumn("countryBeneficiaryName");
-            grid.lockColumn("projectNum");
-            grid.lockColumn("pipelineYear");
 
-            grid.reorderColumn(1, grid.columns[0]);
+            grid.lockColumn("countryBeneficiaryName");
+            grid.lockColumn("approvalYear");
+            grid.lockColumn("pipelineYear");
+            grid.lockColumn("projectNum");
+            grid.lockColumn("operationNum");
+            //grid.reorderColumn(1, grid.columns[0]);
           }
 
         });
@@ -227,13 +245,14 @@ angularRoutingApp.controller('MainCtrl', function($scope, $http, $timeout, gridC
 
         gridConfig.detailExportPromises = [];
         this.expandRow(this.tbody.find("tr.k-master-row").first());
+        onDataBinding();
         // this.expandRow(this.tbody.find("tr.k-master-row"));
       },
       filterMenuInit: function(e) {
         if (e.field === "countryBeneficiaryName" || e.field === "stage") {
           //var filterMultiCheck = this.thead.find("[data-field=" + e.field + "]").data("kendoFilterMultiCheck")
           var filterMultiCheck;
-          if (this.lockedHeader) {
+          if (e.field != "stage") {
             filterMultiCheck = this.lockedHeader.find("[data-field=" + e.field + "]").data("kendoFilterMultiCheck");
           } else {
             filterMultiCheck = this.thead.find("[data-field=" + e.field + "]").data("kendoFilterMultiCheck");
@@ -260,7 +279,7 @@ angularRoutingApp.controller('MainCtrl', function($scope, $http, $timeout, gridC
       sortable: true,
       scrollable: true,
       resizable: true,
-      dataBound: onDataBinding,
+      //dataBound: onDataBinding,
       //pageable: true,
       pageable: {
         refresh: false,
@@ -361,6 +380,8 @@ angularRoutingApp.controller('MainCtrl', function($scope, $http, $timeout, gridC
     var header = createHeader();
     var content = e.page;
     var footer = createFooter(e.pageNumber, e.totalPages);
+    var footerDate = createFooterDate();
+    var footerTitle = createFooterTitle();
 
     // Remove header, footer and spacers from the page size
     var contentRect = PAGE_RECT.clone();
@@ -388,6 +409,8 @@ angularRoutingApp.controller('MainCtrl', function($scope, $http, $timeout, gridC
 
     // Move the footer to the bottom-right corner
     page.append(footer);
+    page.append(footerDate);
+    page.append(footerTitle);
     draw.vAlign([footer], PAGE_RECT, "end");
     draw.align([footer], PAGE_RECT, "end");
 
@@ -404,14 +427,6 @@ angularRoutingApp.controller('MainCtrl', function($scope, $http, $timeout, gridC
       [800, 80] // Size of the rectangle
     );
     return new draw.Image("/Images/projects/reports/" + $scope.reportType + (configuration.language == "SP" ? "_sp" : "") + ".png", rect);
-
-
-    //  var circleGeometry = new geom.Circle([100, 100], 20);
-    //    return   new draw.Circle(circleGeometry).stroke("red", 1);
-
-    //  return new kendo.drawing.Text("Fomin.", [0, 0], {
-    //    font: mm(8) + "px 'DejaVu Sans'"
-    //  });
   }
 
   function createFooter(page, total) {
@@ -419,16 +434,31 @@ angularRoutingApp.controller('MainCtrl', function($scope, $http, $timeout, gridC
       kendo.format("Page {0} of {1}", page, total), [0, 0], {
         font: mm(3) + "px 'DejaVu Sans'"
       }
+
+    );
+  };
+
+  function createFooterDate() {
+    return new kendo.drawing.Text(
+      kendo.format(kendo.toString(new Date(), "dd-MMM-yyyy")), [0, 540], {
+        font: mm(3) + "px 'DejaVu Sans'"
+      }
+    );
+  };
+
+  function createFooterTitle() {
+    var xAxis = configuration.language != "sp" ? 340 : 300;
+    return new kendo.drawing.Text(
+      kendo.format(configuration.gridheader.KSCUnit), [xAxis, 540], {
+        font: mm(5) + "px 'DejaVu Sans'"
+      }
     );
   }
-
 
   var onError = function(reason) {
     console.log(reason.data.message);
     $scope.error = reason.data.message;
   };
-
-
 
   var config = {
     method: 'POST',
